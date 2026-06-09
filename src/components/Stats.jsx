@@ -24,9 +24,9 @@ function AnimatedCounter({ to, suffix = '', duration = 2 }) {
 }
 
 const stats = [
-  { to: 50, suffix: '+', label: 'Projets réalisés' },
-  { to: 30, suffix: '+', label: 'Clients satisfaits' },
-  { to: 3, suffix: ' ans', label: "D'expérience" },
+  { to: 8, suffix: '+', label: 'Projets réalisés' },
+  { to: 6, suffix: '+', label: 'Clients satisfaits' },
+  { to: 1, suffix: ' an', label: "D'expérience" },
   { to: 100, suffix: '%', label: 'Satisfaction client' },
 ]
 

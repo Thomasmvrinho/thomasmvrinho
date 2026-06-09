@@ -1,55 +1,44 @@
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect } from 'react'
+import { motion, useMotionValue, useVelocity, useTransform, useSpring } from 'framer-motion'
 
 export default function CursorFollower() {
-  const [pos, setPos] = useState({ x: -100, y: -100 })
-  const [hovered, setHovered] = useState(false)
+  const x = useMotionValue(-100)
+  const y = useMotionValue(-100)
+
+  // Vélocité sur chaque axe
+  const velX = useVelocity(x)
+  const velY = useVelocity(y)
+
+  // Vitesse totale (norme du vecteur vitesse)
+  const speed = useTransform([velX, velY], ([vx, vy]) =>
+    Math.sqrt(vx ** 2 + vy ** 2)
+  )
+
+  // Mapping vitesse → scale : au repos = 1, vite = jusqu'à 4
+  const rawScale = useTransform(speed, [0, 500, 2000], [1, 1.6, 2.5], { clamp: true })
+
+  // Spring sur le scale uniquement pour un retour fluide
+  const scale = useSpring(rawScale, { stiffness: 350, damping: 28 })
 
   useEffect(() => {
-    const onMove = (e) => setPos({ x: e.clientX, y: e.clientY })
-    const onOver = (e) => {
-      const el = e.target
-      setHovered(
-        el.tagName === 'A' ||
-        el.tagName === 'BUTTON' ||
-        !!el.closest('a') ||
-        !!el.closest('button')
-      )
-    }
+    const onMove = (e) => { x.set(e.clientX); y.set(e.clientY) }
     window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseover', onOver)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseover', onOver)
-    }
+    return () => window.removeEventListener('mousemove', onMove)
   }, [])
 
   return (
-    <>
-      <motion.div
-        className="fixed pointer-events-none z-[9999] hidden md:block rounded-full"
-        style={{
-          width: 10,
-          height: 10,
-          background: 'linear-gradient(135deg, #c97efd, #ff8e06)',
-          top: 0,
-          left: 0,
-        }}
-        animate={{ x: pos.x - 5, y: pos.y - 5, scale: hovered ? 3 : 1 }}
-        transition={{ type: 'spring', stiffness: 600, damping: 32 }}
-      />
-      <motion.div
-        className="fixed pointer-events-none z-[9998] hidden md:block rounded-full"
-        style={{
-          width: 38,
-          height: 38,
-          border: '1.5px solid rgba(201,126,253,0.45)',
-          top: 0,
-          left: 0,
-        }}
-        animate={{ x: pos.x - 19, y: pos.y - 19, scale: hovered ? 1.6 : 1 }}
-        transition={{ type: 'spring', stiffness: 140, damping: 20 }}
-      />
-    </>
+    <motion.div
+      className="fixed pointer-events-none z-[9999] hidden md:block rounded-full"
+      style={{
+        width: 10,
+        height: 10,
+        background: 'linear-gradient(135deg, #c97efd, #ff8e06)',
+        top: -5,
+        left: -5,
+        x,
+        y,
+        scale,
+      }}
+    />
   )
 }

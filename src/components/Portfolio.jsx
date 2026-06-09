@@ -3,14 +3,14 @@ import { ExternalLink } from 'lucide-react'
 
 const projects = [
   {
-    title: 'E-commerce Mode',
-    tags: ['E-commerce', 'Shopify'],
-    img: 'https://placehold.co/800x450/12121a/c97efd?text=Projet+1',
+    title: 'ADMARKETING',
+    tags: ['Vitrine', "Apporteur d'Affaires"],
+    img: '/admarketing.png',
   },
   {
-    title: 'Site Vitrine Restaurant',
-    tags: ['Vitrine', 'React'],
-    img: 'https://placehold.co/800x450/1a1208/ff8e06?text=Projet+2',
+    title: 'E-commerce Mode',
+    tags: ['E-commerce', 'Shopify'],
+    img: 'https://placehold.co/800x450/12121a/c97efd?text=Projet+2',
   },
   {
     title: 'Boutique Bijoux',

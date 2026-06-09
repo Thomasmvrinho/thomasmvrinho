@@ -7,7 +7,7 @@ const services = [
     title: 'Site Vitrine',
     desc: "Un site élégant et professionnel qui présente votre activité, inspire confiance et convertit vos visiteurs en prospects qualifiés.",
     features: ['Design sur-mesure', 'Responsive mobile', 'Optimisé SEO', 'Chargement rapide'],
-    badge: 'À partir de XXX€',
+    badge: 'À partir de 990€',
     accent: '#c97efd',
   },
   {
@@ -15,7 +15,7 @@ const services = [
     title: 'Site E-commerce',
     desc: "Une boutique en ligne performante, intuitive et sécurisée pour vendre vos produits 24h/24, partout dans le monde.",
     features: ['Paiement sécurisé', 'Gestion des stocks', 'Tableau de bord', 'Design premium'],
-    badge: 'À partir de XXX€',
+    badge: 'À partir de 1 990€',
     accent: '#ff8e06',
   },
   {
@@ -23,7 +23,7 @@ const services = [
     title: 'Refonte & Optimisation',
     desc: "Votre site actuel ne vous satisfait plus ? Je le transforme en une machine à convertir avec un design moderne et des performances optimales.",
     features: ['Audit complet', 'Redesign moderne', 'Vitesse optimisée', 'SEO technique'],
-    badge: 'Sur devis',
+    badge: 'À partir de 790€',
     accent: '#c97efd',
   },
 ]

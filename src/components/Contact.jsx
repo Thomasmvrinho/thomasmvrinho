@@ -8,11 +8,27 @@ const inputClass =
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', type: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setLoading(true)
+    setError(false)
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'form-name': 'contact', ...form }).toString(),
+      })
+      setSent(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -115,15 +131,21 @@ export default function Contact() {
                   placeholder="Décrivez votre projet, vos objectifs..."
                   className={`${inputClass} resize-none`}
                 />
+                {error && (
+                  <p className="font-inter text-red-400 text-sm text-center">
+                    Une erreur est survenue. Réessaie ou contacte-moi par email.
+                  </p>
+                )}
                 <motion.button
                   type="submit"
-                  className="w-full py-4 rounded-xl font-inter font-semibold text-white flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl font-inter font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-70"
                   style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
-                  whileHover={{ scale: 1.02, boxShadow: '0 0 32px rgba(201,126,253,0.42)' }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: loading ? 1 : 1.02, boxShadow: loading ? 'none' : '0 0 32px rgba(201,126,253,0.42)' }}
+                  whileTap={{ scale: loading ? 1 : 0.98 }}
                 >
                   <Send size={17} />
-                  Envoyer ma demande
+                  {loading ? 'Envoi en cours...' : 'Envoyer ma demande'}
                 </motion.button>
               </form>
             )}
@@ -138,8 +160,8 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             {[
-              { Icon: Mail, label: 'Email', value: 'contact@thomasmvrinho.com', href: 'mailto:contact@thomasmvrinho.com' },
-              { Icon: Phone, label: 'Téléphone', value: '+33 XX XX XX XX XX', href: '#' },
+              { Icon: Mail, label: 'Email', value: 'Thomasmvrinho@outlook.com', href: 'mailto:Thomasmvrinho@outlook.com' },
+              { Icon: Phone, label: 'Téléphone', value: '07 82 64 21 08', href: 'tel:+33782642108' },
               { Icon: MapPin, label: 'Localisation', value: 'Basé en France 🇫🇷 — Clients partout dans le monde', href: null },
             ].map(({ Icon, label, value, href }) => (
               <div key={label} className="flex items-start gap-4">

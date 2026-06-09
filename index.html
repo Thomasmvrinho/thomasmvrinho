@@ -9,6 +9,19 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Formulaire caché pour que Netlify le détecte au build -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="type">
+        <option value="vitrine">Site Vitrine</option>
+        <option value="ecommerce">E-commerce</option>
+        <option value="refonte">Refonte</option>
+        <option value="autre">Autre</option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

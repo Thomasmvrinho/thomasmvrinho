@@ -5,7 +5,7 @@ const plans = [
   {
     name: 'Essentiel',
     desc: 'Site Vitrine — 1 à 5 pages',
-    price: 'À partir de XXX€',
+    price: 'À partir de 990€',
     features: [
       'Design personnalisé',
       'Responsive mobile',
@@ -19,7 +19,7 @@ const plans = [
   {
     name: 'Business',
     desc: 'Site Vitrine avancé — 5 à 10 pages',
-    price: 'À partir de XXX€',
+    price: 'À partir de 1 490€',
     features: [
       'Tout de Essentiel',
       'Blog intégré',
@@ -35,7 +35,7 @@ const plans = [
   {
     name: 'E-commerce',
     desc: 'Boutique en ligne complète',
-    price: 'À partir de XXX€',
+    price: 'À partir de 1 990€',
     features: [
       'Catalogue produits',
       'Paiement sécurisé',
@@ -72,20 +72,20 @@ export default function Pricing() {
           />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-7 items-start">
+        <div className="grid md:grid-cols-3 gap-7 items-stretch">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
+              className="h-full"
               initial={{ opacity: 0, y: 38 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.14 }}
               whileHover={{ y: -8 }}
             >
-              {/* Gradient border wrapper for highlighted plan */}
               {plan.highlight ? (
                 <div
-                  className="relative rounded-2xl p-[2px]"
+                  className="relative rounded-2xl p-[2px] h-full"
                   style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)', boxShadow: '0 16px 60px rgba(201,126,253,0.22)' }}
                 >
                   {plan.badge && (
@@ -100,7 +100,7 @@ export default function Pricing() {
                 </div>
               ) : (
                 <div
-                  className="rounded-2xl"
+                  className="rounded-2xl h-full"
                   style={{ boxShadow: '0 2px 20px rgba(0,0,0,0.07)', border: '1px solid rgba(0,0,0,0.07)' }}
                 >
                   <PlanCard plan={plan} highlighted={false} />
@@ -117,23 +117,24 @@ export default function Pricing() {
 function PlanCard({ plan, highlighted }) {
   return (
     <div
-      className="rounded-[14px] p-8"
+      className="rounded-[14px] p-8 flex flex-col"
       style={{ background: highlighted ? 'rgba(201,126,253,0.04)' : 'white' }}
     >
       <h3 className="font-grotesk font-bold text-xl text-ink mb-1">{plan.name}</h3>
       <p className="font-inter text-ink/45 text-sm mb-5">{plan.desc}</p>
-      <div
-        className="font-grotesk font-bold text-3xl mb-8"
-        style={
-          highlighted
-            ? { background: 'linear-gradient(135deg, #c97efd, #ff8e06)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }
-            : { color: '#0a0a0a' }
-        }
-      >
-        {plan.price}
+      <div className="mb-8">
+        <span className="font-inter text-xs font-medium text-ink/40 uppercase tracking-widest block mb-1">
+          À partir de
+        </span>
+        <span
+          className="font-grotesk font-bold text-3xl"
+          style={{ color: '#0a0a0a' }}
+        >
+          {plan.price.replace('À partir de ', '')}
+        </span>
       </div>
 
-      <ul className="space-y-3 mb-8">
+      <ul className="space-y-3 mb-8 flex-1">
         {plan.features.map((f) => (
           <li key={f} className="flex items-center gap-3 font-inter text-sm text-ink/65">
             <div
