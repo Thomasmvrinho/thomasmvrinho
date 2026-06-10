@@ -163,18 +163,11 @@ export default function Hero() {
                     fontFamily: 'Arial, sans-serif',
                   }}>&nbsp;</div>
                 </div>
-                <div style={{
-                  background: '#080708',
-                  minHeight: '300px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '32px',
-                }}>
+                <div style={{ height: '300px', overflow: 'hidden' }}>
                   <img
                     src="/logo-thomas.png"
                     alt="Thomasmvrinho"
-                    style={{ maxWidth: '90%', maxHeight: '240px', objectFit: 'contain', mixBlendMode: 'screen' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     loading="lazy"
                   />
                 </div>
