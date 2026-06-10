@@ -164,7 +164,7 @@ export default function Hero() {
                   }}>&nbsp;</div>
                 </div>
                 <div style={{
-                  background: '#000000',
+                  background: '#080708',
                   minHeight: '300px',
                   display: 'flex',
                   alignItems: 'center',
