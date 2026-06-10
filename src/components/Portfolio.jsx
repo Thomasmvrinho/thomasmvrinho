@@ -6,6 +6,7 @@ const projects = [
     title: 'ADMARKETING',
     tags: ['Vitrine', "Apporteur d'Affaires"],
     img: '/admarketing.png',
+    link: 'https://admarketing-ten.vercel.app/',
   },
   {
     title: 'E-commerce Mode',
@@ -79,14 +80,28 @@ export default function Portfolio() {
                 />
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-ink/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                  <motion.button
-                    className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-                    style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
-                    whileHover={{ scale: 1.06 }}
-                  >
-                    <ExternalLink size={15} />
-                    Voir le projet
-                  </motion.button>
+                  {project.link ? (
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+                      style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
+                      whileHover={{ scale: 1.06 }}
+                    >
+                      <ExternalLink size={15} />
+                      Voir le projet
+                    </motion.a>
+                  ) : (
+                    <motion.button
+                      className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+                      style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
+                      whileHover={{ scale: 1.06 }}
+                    >
+                      <ExternalLink size={15} />
+                      Voir le projet
+                    </motion.button>
+                  )}
                 </div>
               </div>
 
