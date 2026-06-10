@@ -118,24 +118,79 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right: Mockup */}
+        {/* Right: Mac Mockup */}
         <motion.div
           className="relative"
           initial={{ opacity: 0, x: 45 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="relative rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.09)' }}>
-            <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(135deg, rgba(201,126,253,0.18), rgba(255,142,6,0.08))' }}
-            />
-            <img
-              src="https://placehold.co/800x500/0f0f14/c97efd?text=Votre+Futur+Site"
-              alt="Aperçu d'un site web moderne"
-              className="w-full h-auto relative z-10 opacity-90"
-              loading="lazy"
-            />
+          {/* Mac frame */}
+          <div className="relative w-full select-none">
+            <div style={{
+              background: 'linear-gradient(160deg, #3a3a3a, #1c1c1c)',
+              borderRadius: '14px 14px 0 0',
+              padding: '14px 14px 10px',
+              border: '1px solid rgba(255,255,255,0.07)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.08), 0 0 60px rgba(201,126,253,0.1)',
+            }}>
+              <div className="flex justify-center mb-2">
+                <div style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#2a2a2a', border: '1px solid #3a3a3a' }} />
+              </div>
+              <div style={{ background: '#ffffff', borderRadius: '4px', overflow: 'hidden' }}>
+                <div style={{
+                  background: '#f1f3f4',
+                  padding: '7px 10px',
+                  borderBottom: '1px solid #e0e0e0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}>
+                  <div style={{ display: 'flex', gap: '5px', flexShrink: 0 }}>
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ff5f57' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#febc2e' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#28c840' }} />
+                  </div>
+                  <div style={{
+                    flex: 1,
+                    background: 'white',
+                    borderRadius: '20px',
+                    padding: '3px 10px',
+                    border: '1px solid #dadce0',
+                    fontSize: '9px',
+                    color: '#bbb',
+                    textAlign: 'center',
+                    fontFamily: 'Arial, sans-serif',
+                  }}>&nbsp;</div>
+                </div>
+                <div style={{
+                  background: '#000000',
+                  minHeight: '300px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '32px',
+                }}>
+                  <img
+                    src="/logo-thomas.png"
+                    alt="Thomasmvrinho"
+                    style={{ maxWidth: '90%', maxHeight: '240px', objectFit: 'contain' }}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+            <div style={{ background: 'linear-gradient(180deg, #1c1c1c, #252525)', height: '10px', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 0, left: '28%', right: '28%', height: '3px', background: '#141414', borderRadius: '0 0 6px 6px' }} />
+            </div>
+            <div style={{
+              background: 'linear-gradient(180deg, #252525, #1c1c1c)',
+              height: '20px',
+              borderRadius: '0 0 10px 10px',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.7)',
+              border: '1px solid rgba(255,255,255,0.04)',
+              borderTop: 'none',
+            }} />
           </div>
 
           {/* Floating badges */}
@@ -148,7 +203,7 @@ export default function Hero() {
           >
             <span className="text-xl">⭐</span>
             <div>
-              <div className="font-grotesk font-bold text-white text-sm">50+ projets</div>
+              <div className="font-grotesk font-bold text-white text-sm">+8 projets</div>
               <div className="font-inter text-white/45 text-xs">réalisés avec succès</div>
             </div>
           </motion.div>
