@@ -174,7 +174,7 @@ export default function Hero() {
                   <img
                     src="/logo-thomas.png"
                     alt="Thomasmvrinho"
-                    style={{ maxWidth: '90%', maxHeight: '240px', objectFit: 'contain' }}
+                    style={{ maxWidth: '90%', maxHeight: '240px', objectFit: 'contain', mixBlendMode: 'screen' }}
                     loading="lazy"
                   />
                 </div>
