@@ -4,23 +4,23 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 
 const testimonials = [
   {
-    name: 'Sophie Martin',
-    role: 'Gérante — Boutique Éclat',
-    text: "Thomas a transformé notre présence en ligne de façon spectaculaire. Notre site est maintenant une véritable vitrine qui reflète l'élégance de notre marque. Les ventes en ligne ont explosé depuis le lancement !",
-    img: 'https://placehold.co/80x80/c97efd/ffffff?text=SM',
+    name: 'Adrien Lafarge',
+    role: 'Directeur — ADMARKETING',
+    text: "Un travail remarquable, livré dans les temps et dans le budget. Thomas a su comprendre parfaitement nos besoins et créer un site qui dépasse toutes nos attentes. Professionnalisme irréprochable.",
+    img: 'https://placehold.co/80x80/ff8e06/ffffff?text=AL',
     stars: 5,
   },
   {
-    name: 'Marc Dupuis',
-    role: 'Directeur — Agence Horizon',
-    text: "Un travail remarquable, livré dans les temps et dans le budget. Thomas a su comprendre parfaitement nos besoins et créer un site qui dépasse toutes nos attentes. Professionnalisme irréprochable.",
-    img: 'https://placehold.co/80x80/ff8e06/ffffff?text=MD',
+    name: 'Sophie Martin',
+    role: 'Gérante — Maison Rivière',
+    text: "J'avais un vieux site qui faisait vraiment amateur. Thomas a tout repris from scratch, il a même proposé des idées auxquelles je n'avais pas pensé pour la mise en avant des collections. Le résultat est exactement ce que je cherchais sans savoir l'exprimer.",
+    img: 'https://placehold.co/80x80/c97efd/ffffff?text=SM',
     stars: 5,
   },
   {
     name: 'Léa Fontaine',
     role: 'Fondatrice — Studio Lotus',
-    text: "Notre chiffre d'affaires en ligne a augmenté de 40% depuis le lancement de notre nouveau site. Thomas est à l'écoute, créatif, et techniquement irréprochable. Je recommande les yeux fermés.",
+    text: "Ce qui m'a convaincue c'est qu'il a pris le temps de comprendre mon activité avant de commencer quoi que ce soit. Pas de template générique, tout a été pensé pour mon studio. Les retours clients depuis le lancement sont vraiment positifs.",
     img: 'https://placehold.co/80x80/c97efd/ffffff?text=LF',
     stars: 5,
   },
