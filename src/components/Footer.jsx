@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Instagram, Linkedin } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
 
 const footerLinks = [
   { label: 'Accueil', href: '#home' },
@@ -34,18 +34,15 @@ export default function Footer() {
           </nav>
 
           <div className="flex gap-3">
-            {[Instagram, Linkedin].map((Icon, i) => (
-              <motion.a
-                key={i}
-                href="#"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white/35 hover:text-white/70 transition-colors"
-                style={{ border: '1px solid rgba(255,255,255,0.09)' }}
-                whileHover={{ scale: 1.12, y: -2 }}
-                aria-label="Social"
-              >
-                <Icon size={16} />
-              </motion.a>
-            ))}
+            <motion.a
+              href="#"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-white/35 hover:text-white/70 transition-colors"
+              style={{ border: '1px solid rgba(255,255,255,0.09)' }}
+              whileHover={{ scale: 1.12, y: -2 }}
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={16} />
+            </motion.a>
           </div>
         </div>
 

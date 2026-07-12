@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Instagram, Linkedin, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Send } from 'lucide-react'
 
 const inputClass =
   'w-full px-5 py-4 rounded-xl font-inter text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 outline-none focus:border-brand transition-colors duration-200'
@@ -191,29 +191,14 @@ export default function Contact() {
                 Réseaux sociaux
               </div>
               <div className="flex gap-3">
-                {[
-                  { Icon: Instagram, label: 'Instagram' },
-                  { Icon: Linkedin, label: 'LinkedIn' },
-                ].map(({ Icon, label }) => (
-                  <motion.a
-                    key={label}
-                    href="#"
-                    className="w-11 h-11 rounded-xl flex items-center justify-center text-white/40 transition-colors"
-                    style={{ border: '1px solid rgba(255,255,255,0.1)' }}
-                    whileHover={{ scale: 1.1, y: -2, color: '#c97efd', borderColor: 'rgba(201,126,253,0.4)' }}
-                    aria-label={label}
-                  >
-                    <Icon size={19} />
-                  </motion.a>
-                ))}
                 <motion.a
                   href="#"
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white/40 font-grotesk font-bold text-sm transition-colors"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white/40 transition-colors"
                   style={{ border: '1px solid rgba(255,255,255,0.1)' }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  aria-label="Behance"
+                  whileHover={{ scale: 1.1, y: -2, color: '#c97efd', borderColor: 'rgba(201,126,253,0.4)' }}
+                  aria-label="LinkedIn"
                 >
-                  Be
+                  <Linkedin size={19} />
                 </motion.a>
               </div>
             </div>

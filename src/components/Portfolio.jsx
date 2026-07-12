@@ -7,31 +7,21 @@ const projects = [
     tags: ['Vitrine', "Apporteur d'Affaires"],
     img: '/admarketing.png',
     link: 'https://admarketing-ten.vercel.app/',
+    accent: '#c97efd',
   },
   {
-    title: 'E-commerce Mode',
-    tags: ['E-commerce', 'Shopify'],
-    img: 'https://placehold.co/800x450/12121a/c97efd?text=Projet+2',
+    title: 'En développement',
+    tags: [],
+    img: null,
+    link: null,
+    accent: '#ff8e06',
   },
   {
-    title: 'Boutique Bijoux',
-    tags: ['E-commerce', 'WordPress'],
-    img: 'https://placehold.co/800x450/0e0e1a/c97efd?text=Projet+3',
-  },
-  {
-    title: 'Agence Immobilière',
-    tags: ['Vitrine', 'Next.js'],
-    img: 'https://placehold.co/800x450/1a0e1a/ff8e06?text=Projet+4',
-  },
-  {
-    title: 'Studio de Tatouage',
-    tags: ['Vitrine', 'WordPress'],
-    img: 'https://placehold.co/800x450/141414/c97efd?text=Projet+5',
-  },
-  {
-    title: 'Spa & Bien-être',
-    tags: ['Vitrine', 'React'],
-    img: 'https://placehold.co/800x450/0e1a18/ff8e06?text=Projet+6',
+    title: 'En développement',
+    tags: [],
+    img: null,
+    link: null,
+    accent: '#c97efd',
   },
 ]
 
@@ -58,69 +48,79 @@ export default function Portfolio() {
           />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {projects.map((project, i) => (
             <motion.div
-              key={project.title}
-              className="group relative rounded-2xl overflow-hidden bg-white"
+              key={`${project.title}-${i}`}
+              className="rounded-2xl"
+              style={{
+                padding: '2px',
+                background: `linear-gradient(135deg, ${project.accent === '#c97efd' ? '#c97efd' : '#ff8e06'}, ${project.accent === '#c97efd' ? '#ff8e06' : '#c97efd'})`,
+                boxShadow: '0 4px 24px rgba(0,0,0,0.12)',
+              }}
               initial={{ opacity: 0, scale: 0.92 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.09 }}
-              whileHover={{ y: -5, boxShadow: '0 20px 55px rgba(0,0,0,0.12)' }}
-              style={{ boxShadow: '0 2px 16px rgba(0,0,0,0.07)', border: '1px solid rgba(0,0,0,0.06)' }}
+              whileHover={{ y: -5, boxShadow: '0 20px 55px rgba(0,0,0,0.22)' }}
             >
-              {/* Image area */}
-              <div className="relative overflow-hidden h-52">
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-ink/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                  {project.link ? (
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-                      style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
-                      whileHover={{ scale: 1.06 }}
-                    >
-                      <ExternalLink size={15} />
-                      Voir le projet
-                    </motion.a>
+              <div className="rounded-[14px] overflow-hidden bg-white">
+                {/* Zone image */}
+                <div className={`relative overflow-hidden h-52 ${project.img ? 'bg-[#f5f5f7]' : 'bg-[#0a0a0a]'}`}>
+                  {project.img ? (
+                    <>
+                      <img
+                        src={project.img}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      {project.link && (
+                        <div className="absolute inset-0 bg-ink/80 opacity-0 hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          <motion.a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2"
+                            style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
+                            whileHover={{ scale: 1.06 }}
+                          >
+                            <ExternalLink size={15} />
+                            Voir le projet
+                          </motion.a>
+                        </div>
+                      )}
+                    </>
                   ) : (
-                    <motion.button
-                      className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
-                      style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
-                      whileHover={{ scale: 1.06 }}
-                    >
-                      <ExternalLink size={15} />
-                      Voir le projet
-                    </motion.button>
+                    <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+                      <span className="text-4xl">🚧</span>
+                      <span className="font-inter text-white/40 text-sm">En développement</span>
+                    </div>
                   )}
                 </div>
-              </div>
 
-              {/* Info */}
-              <div className="p-5">
-                <h3 className="font-grotesk font-bold text-ink mb-3">{project.title}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full font-inter text-xs font-semibold"
-                      style={{
-                        background: tag === 'E-commerce' ? 'rgba(255,142,6,0.1)' : 'rgba(201,126,253,0.1)',
-                        color: tag === 'E-commerce' ? '#ff8e06' : '#c97efd',
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {/* Zone info */}
+                <div
+                  className="p-5"
+                  style={{ borderTop: '1px solid rgba(0,0,0,0.06)' }}
+                >
+                  <h3 className="font-grotesk font-bold text-ink mb-3">{project.title}</h3>
+                  {project.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 rounded-full font-inter text-xs font-semibold"
+                          style={{
+                            background: tag === 'E-commerce' ? 'rgba(255,142,6,0.1)' : 'rgba(201,126,253,0.1)',
+                            color: tag === 'E-commerce' ? '#ff8e06' : '#c97efd',
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
