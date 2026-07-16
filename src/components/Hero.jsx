@@ -26,19 +26,19 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen bg-ink flex items-center pt-28 pb-16 overflow-hidden"
+      className="relative min-h-screen bg-ink flex items-center pt-28 pb-16"
     >
       {/* Background blobs */}
       <div
-        className="absolute top-[-8%] right-[-6%] w-[520px] h-[520px] rounded-full opacity-20 animate-float"
+        className="absolute top-[-8%] right-[-6%] w-[520px] h-[520px] rounded-full opacity-20 animate-float pointer-events-none"
         style={{ background: 'radial-gradient(circle, #c97efd 0%, transparent 70%)', filter: 'blur(70px)' }}
       />
       <div
-        className="absolute bottom-[-4%] left-[-6%] w-[420px] h-[420px] rounded-full opacity-12 animate-float-slow"
+        className="absolute bottom-[-4%] left-[-6%] w-[420px] h-[420px] rounded-full opacity-12 animate-float-slow pointer-events-none"
         style={{ background: 'radial-gradient(circle, #ff8e06 0%, transparent 70%)', filter: 'blur(70px)' }}
       />
       <div
-        className="absolute top-[42%] left-[42%] w-[220px] h-[220px] rounded-full opacity-10"
+        className="absolute top-[42%] left-[42%] w-[220px] h-[220px] rounded-full opacity-10 pointer-events-none"
         style={{ background: 'radial-gradient(circle, #c97efd, #ff8e06)', filter: 'blur(55px)' }}
       />
 
@@ -46,7 +46,7 @@ export default function Hero() {
       {sparkles.map((s, i) => (
         <motion.div
           key={i}
-          className="absolute w-1.5 h-1.5 rounded-full"
+          className="absolute w-1.5 h-1.5 rounded-full pointer-events-none"
           style={{ top: s.top, left: s.left, right: s.right, background: s.color }}
           animate={{ opacity: [0, 1, 0], scale: [0, 1.2, 0] }}
           transition={{ duration: 2.8, delay: s.delay, repeat: Infinity, repeatDelay: 1 }}
@@ -98,14 +98,18 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.45 }}
           >
-            <motion.a
+            <a
               href="#portfolio"
+              onClick={(e) => {
+                e.preventDefault()
+                setTimeout(() => {
+                  document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })
+                }, 0)
+              }}
               className="px-7 py-3.5 rounded-full font-inter font-semibold text-brand border-2 border-brand hover:bg-brand hover:text-white transition-all duration-300"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
             >
               Voir mes réalisations
-            </motion.a>
+            </a>
             <motion.a
               href="#contact"
               className="px-7 py-3.5 rounded-full font-inter font-semibold text-white"

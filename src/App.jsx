@@ -28,7 +28,7 @@ function HomePage() {
   }
 
   return (
-    <div>
+    <div style={{ overflowX: 'hidden' }}>
       <ScrollProgress />
       <Navbar />
       <main>
