@@ -3,25 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thomasmvrinho — Création de Sites Internet</title>
-    <meta name="description" content="Freelance spécialisé dans la création de sites vitrines et e-commerce sur-mesure. Sites performants, modernes et optimisés SEO." />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>" />
+
+    <!-- Titre & Description -->
+    <title>Thomas Marinho — Création de Sites Web sur-mesure en Île-de-France</title>
+    <meta name="description" content="Freelance créatif basé en Île-de-France. Création de sites vitrines, e-commerce et applications web sur-mesure. Design moderne, SEO optimisé, livraison rapide." />
+    <meta name="keywords" content="création site web, freelance développeur web, site vitrine, e-commerce, Shopify, React, Île-de-France, Paris, Thomas Marinho" />
+    <meta name="author" content="Thomas Marinho" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.thomasmvrinho.com" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thomasmvrinho.com" />
+    <meta property="og:title" content="Thomas Marinho — Création de Sites Web sur-mesure" />
+    <meta property="og:description" content="Freelance créatif en Île-de-France. Sites vitrines, e-commerce et applications web modernes et performants." />
+    <meta property="og:image" content="https://www.thomasmvrinho.com/og-image.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Thomasmvrinho" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.thomasmvrinho.com" />
+    <meta name="twitter:title" content="Thomas Marinho — Création de Sites Web sur-mesure" />
+    <meta name="twitter:description" content="Freelance créatif en Île-de-France. Sites vitrines, e-commerce et applications web modernes et performants." />
+    <meta name="twitter:image" content="https://www.thomasmvrinho.com/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Thomas Marinho",
+      "url": "https://www.thomasmvrinho.com",
+      "jobTitle": "Développeur Web Freelance",
+      "description": "Création de sites vitrines, e-commerce et applications web sur-mesure en Île-de-France.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Île-de-France",
+        "addressCountry": "FR"
+      },
+      "email": "thomasmvrinho@outlook.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/thomas-marinho-421848415"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "description": "Création de sites web sur-mesure",
+        "priceRange": "800€ - 20000€"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <!-- Formulaire caché pour que Netlify le détecte au build -->
-    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="tel" name="phone" />
-      <select name="type">
-        <option value="vitrine">Site Vitrine</option>
-        <option value="ecommerce">E-commerce</option>
-        <option value="refonte">Refonte</option>
-        <option value="autre">Autre</option>
-      </select>
-      <textarea name="message"></textarea>
-    </form>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

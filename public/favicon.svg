@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c97efd"/>
+      <stop offset="100%" stop-color="#ff8e06"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fond arrondi -->
+  <rect width="100" height="100" rx="24" fill="url(#bg)"/>
+
+  <!-- Bordure dégradée -->
+  <rect x="1.5" y="1.5" width="97" height="97" rx="23" fill="none" stroke="url(#border)" stroke-width="2.5" opacity="0.6"/>
+
+  <!-- Texte To centré -->
+  <text x="50" y="68" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="54" letter-spacing="-2">
+    <tspan fill="#c97efd">T</tspan><tspan fill="#ff8e06">o</tspan>
+  </text>
+</svg>
