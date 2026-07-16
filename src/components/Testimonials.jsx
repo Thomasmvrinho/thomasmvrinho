@@ -17,13 +17,6 @@ const testimonials = [
     img: 'https://placehold.co/80x80/c97efd/ffffff?text=EM',
     stars: 5,
   },
-  {
-    name: 'Léa Fontaine',
-    role: 'Fondatrice — Studio Lotus',
-    text: "Ce qui m'a convaincue c'est qu'il a pris le temps de comprendre mon activité avant de commencer quoi que ce soit. Pas de template générique, tout a été pensé pour mon studio. Les retours clients depuis le lancement sont vraiment positifs.",
-    img: 'https://placehold.co/80x80/c97efd/ffffff?text=LF',
-    stars: 5,
-  },
 ]
 
 export default function Testimonials() {
