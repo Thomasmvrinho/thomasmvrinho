@@ -7,14 +7,14 @@ const testimonials = [
     name: 'Adrien.L',
     role: 'Directeur — ADMARKETING',
     text: "Un travail remarquable, livré dans les temps et dans le budget. Thomas a su comprendre parfaitement nos besoins et créer un site qui dépasse toutes nos attentes. Professionnalisme irréprochable.",
-    img: 'https://placehold.co/80x80/ff8e06/ffffff?text=AL',
+    img: '/adrien-memoji.png',
     stars: 5,
   },
   {
     name: 'Emma.M',
     role: 'Gérante — By-Emma',
     text: "J'avais un vieux site qui faisait vraiment amateur. Thomas a tout refait de zéro, il m'a même proposé des idées pour mieux mettre en avant mes collections. Le résultat est exactement ce que je voulais sans savoir comment l'expliquer.",
-    img: 'https://placehold.co/80x80/c97efd/ffffff?text=EM',
+    img: '/emma-memoji.png',
     stars: 5,
   },
 ]
@@ -74,8 +74,7 @@ export default function Testimonials() {
                   <img
                     src={testimonials[current].img}
                     alt={testimonials[current].name}
-                    className="w-12 h-12 rounded-full"
-                    loading="lazy"
+                    className="w-12 h-12 rounded-full bg-white object-cover object-center"
                   />
                   <div>
                     <div className="font-grotesk font-bold text-white text-sm">
