@@ -64,8 +64,8 @@ function playSwoop() {
     const ctx = new (window.AudioContext || window.webkitAudioContext)()
     const now = ctx.currentTime
 
-    // Bruit blanc filtré (texture "whoosh")
-    const bufferSize = Math.floor(ctx.sampleRate * 0.45)
+    // Bruit blanc filtré — doux et étalé
+    const bufferSize = Math.floor(ctx.sampleRate * 0.9)
     const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
     const data = buffer.getChannelData(0)
     for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1
@@ -75,36 +75,52 @@ function playSwoop() {
 
     const filter = ctx.createBiquadFilter()
     filter.type = 'bandpass'
-    filter.frequency.setValueAtTime(2200, now)
-    filter.frequency.exponentialRampToValueAtTime(350, now + 0.38)
-    filter.Q.value = 0.6
+    filter.frequency.setValueAtTime(1400, now)
+    filter.frequency.exponentialRampToValueAtTime(280, now + 0.75)
+    filter.Q.value = 1.2
 
     const noiseGain = ctx.createGain()
     noiseGain.gain.setValueAtTime(0, now)
-    noiseGain.gain.linearRampToValueAtTime(0.18, now + 0.015)
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4)
+    noiseGain.gain.linearRampToValueAtTime(0.08, now + 0.04)
+    noiseGain.gain.setValueAtTime(0.08, now + 0.15)
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.8)
 
     noise.connect(filter)
     filter.connect(noiseGain)
     noiseGain.connect(ctx.destination)
 
-    // Tonalité descendante
+    // Tonalité douce descendante
     const osc = ctx.createOscillator()
     const oscGain = ctx.createGain()
     osc.type = 'sine'
-    osc.frequency.setValueAtTime(680, now)
-    osc.frequency.exponentialRampToValueAtTime(160, now + 0.32)
-    oscGain.gain.setValueAtTime(0.09, now)
-    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.32)
+    osc.frequency.setValueAtTime(520, now)
+    osc.frequency.exponentialRampToValueAtTime(130, now + 0.7)
+    oscGain.gain.setValueAtTime(0, now)
+    oscGain.gain.linearRampToValueAtTime(0.05, now + 0.05)
+    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.7)
     osc.connect(oscGain)
     oscGain.connect(ctx.destination)
 
+    // Harmonique supérieure légère
+    const osc2 = ctx.createOscillator()
+    const osc2Gain = ctx.createGain()
+    osc2.type = 'sine'
+    osc2.frequency.setValueAtTime(900, now)
+    osc2.frequency.exponentialRampToValueAtTime(220, now + 0.6)
+    osc2Gain.gain.setValueAtTime(0, now)
+    osc2Gain.gain.linearRampToValueAtTime(0.025, now + 0.03)
+    osc2Gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55)
+    osc2.connect(osc2Gain)
+    osc2Gain.connect(ctx.destination)
+
     noise.start(now)
     osc.start(now)
-    noise.stop(now + 0.45)
-    osc.stop(now + 0.35)
+    osc2.start(now)
+    noise.stop(now + 0.9)
+    osc.stop(now + 0.75)
+    osc2.stop(now + 0.6)
 
-    setTimeout(() => ctx.close(), 1200)
+    setTimeout(() => ctx.close(), 1800)
   } catch (_) {}
 }
 
