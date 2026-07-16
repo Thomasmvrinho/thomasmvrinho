@@ -16,6 +16,7 @@ import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import MentionsLegales from './pages/MentionsLegales'
 import CookiesPage from './pages/CookiesPage'
+import CookieBanner from './components/CookieBanner'
 
 function HomePage() {
   const [preselect, setPreselect] = useState(null)
@@ -52,6 +53,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Preloader />
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
