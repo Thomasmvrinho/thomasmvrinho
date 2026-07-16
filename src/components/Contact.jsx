@@ -59,6 +59,55 @@ const questions = [
   },
 ]
 
+function playSwoop() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)()
+    const now = ctx.currentTime
+
+    // Bruit blanc filtré (texture "whoosh")
+    const bufferSize = Math.floor(ctx.sampleRate * 0.45)
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'bandpass'
+    filter.frequency.setValueAtTime(2200, now)
+    filter.frequency.exponentialRampToValueAtTime(350, now + 0.38)
+    filter.Q.value = 0.6
+
+    const noiseGain = ctx.createGain()
+    noiseGain.gain.setValueAtTime(0, now)
+    noiseGain.gain.linearRampToValueAtTime(0.18, now + 0.015)
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4)
+
+    noise.connect(filter)
+    filter.connect(noiseGain)
+    noiseGain.connect(ctx.destination)
+
+    // Tonalité descendante
+    const osc = ctx.createOscillator()
+    const oscGain = ctx.createGain()
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(680, now)
+    osc.frequency.exponentialRampToValueAtTime(160, now + 0.32)
+    oscGain.gain.setValueAtTime(0.09, now)
+    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.32)
+    osc.connect(oscGain)
+    oscGain.connect(ctx.destination)
+
+    noise.start(now)
+    osc.start(now)
+    noise.stop(now + 0.45)
+    osc.stop(now + 0.35)
+
+    setTimeout(() => ctx.close(), 1200)
+  } catch (_) {}
+}
+
 const inputClass = 'w-full px-5 py-4 rounded-xl font-inter text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 outline-none focus:border-brand transition-colors duration-200'
 
 export default function Contact({ preselect }) {
@@ -126,7 +175,7 @@ export default function Contact({ preselect }) {
         templateParams,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
-      .then(() => { setSent(true); setLoading(false) })
+      .then(() => { playSwoop(); setSent(true); setLoading(false) })
       .catch(() => { setLoading(false); alert('Erreur lors de l\'envoi. Réessayez ou contactez-moi directement.') })
   }
 
