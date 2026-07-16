@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 
 const testimonials = [
   {
-    name: 'Adrien Lafarge',
+    name: 'Adrien.L',
     role: 'Directeur — ADMARKETING',
     text: "Un travail remarquable, livré dans les temps et dans le budget. Thomas a su comprendre parfaitement nos besoins et créer un site qui dépasse toutes nos attentes. Professionnalisme irréprochable.",
     img: 'https://placehold.co/80x80/ff8e06/ffffff?text=AL',
