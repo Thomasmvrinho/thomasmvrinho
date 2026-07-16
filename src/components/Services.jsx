@@ -1,61 +1,45 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Check } from 'lucide-react'
 
 const services = [
   {
     emoji: '🌐',
     title: 'Site Vitrine',
-    desc: "Un site élégant et professionnel qui présente votre activité, inspire confiance et convertit vos visiteurs en prospects qualifiés.",
-    features: [
-      'Design sur-mesure',
-      'Responsive mobile',
-      'Optimisé SEO',
-      'Chargement rapide',
-      'Pages illimitées',
-      'Formulaire de contact',
-      'Intégration réseaux sociaux',
+    type: 'vitrine',
+    desc: "Présence en ligne professionnelle pour artisans, professions libérales et TPE.",
+    formulas: [
+      { name: 'Essentiel', detail: '1 page (landing), design sur-mesure, formulaire de contact', price: '800 – 1 200€' },
+      { name: 'Standard', detail: '3 à 5 pages, design sur-mesure, SEO de base', price: '1 500 – 2 500€' },
+      { name: 'Premium', detail: '6+ pages, blog, animations, multilingue', price: '2 500 – 4 000€' },
     ],
-    badge: 'À partir de 990€',
     accent: '#c97efd',
   },
   {
     emoji: '🛒',
     title: 'Site E-commerce',
-    desc: "Une boutique en ligne performante, intuitive et sécurisée pour vendre vos produits 24h/24, partout dans le monde.",
-    features: [
-      'Catalogue produits',
-      'Paiement sécurisé',
-      'Gestion des stocks',
-      'Suivi des commandes',
-      'Tableau de bord',
-      'Design premium',
-      'Pages illimitées',
-      'Formulaire de contact',
-      'Intégration réseaux sociaux',
+    type: 'ecommerce',
+    desc: "Vente en ligne sur Shopify, WooCommerce ou solution entièrement sur-mesure.",
+    formulas: [
+      { name: 'Essentiel', detail: 'Boutique Shopify, thème personnalisé, jusqu\'à 30 produits', price: '2 000 – 3 500€' },
+      { name: 'Standard', detail: 'Catalogue large, filtres avancés, newsletter & avis clients', price: '3 500 – 6 000€' },
+      { name: 'Sur-mesure', detail: 'Fonctionnalités spécifiques, intégrations complexes', price: 'Sur devis (6 000€+)' },
     ],
-    badge: 'À partir de 1 990€',
     accent: '#ff8e06',
   },
   {
-    emoji: '🔧',
-    title: 'Refonte & Optimisation',
-    desc: "Votre site actuel ne vous satisfait plus ? Je le transforme en une machine à convertir avec un design moderne et des performances optimales.",
-    features: [
-      'Audit complet',
-      'Redesign moderne',
-      'Vitesse optimisée',
-      'SEO technique',
-      'Pages illimitées',
-      'Formulaire de contact',
-      'Intégration réseaux sociaux',
+    emoji: '📱',
+    title: 'Application Web & Mobile',
+    type: 'app',
+    desc: "Logique métier avancée — comptes utilisateurs, base de données, back-office.",
+    formulas: [
+      { name: 'MVP simple', detail: 'Fonctionnalités essentielles, une plateforme (web ou mobile)', price: '4 000 – 8 000€' },
+      { name: 'Complète', detail: 'Authentification, base de données, back-office intégré', price: '8 000 – 20 000€' },
     ],
-    badge: 'À partir de 790€',
     accent: '#c97efd',
   },
 ]
 
-export default function Services() {
+export default function Services({ onSelect }) {
   const [hovered, setHovered] = useState(null)
 
   return (
@@ -106,12 +90,13 @@ export default function Services() {
                 onMouseLeave={() => setHovered(null)}
               >
                 <div
-                  className="rounded-[14px] p-8 h-full"
+                  className="rounded-[14px] p-8 h-full flex flex-col items-center text-center"
                   style={{
                     background: isHov ? '#0a0a0a' : '#ffffff',
                     transition: 'background 0.35s ease',
                   }}
                 >
+                  {/* Icône */}
                   <div
                     className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6"
                     style={{
@@ -122,16 +107,15 @@ export default function Services() {
                     {s.emoji}
                   </div>
 
+                  {/* Titre */}
                   <h3
                     className="font-grotesk font-bold text-xl mb-3"
-                    style={{
-                      color: isHov ? '#ffffff' : '#0a0a0a',
-                      transition: 'color 0.35s ease',
-                    }}
+                    style={{ color: isHov ? '#ffffff' : '#0a0a0a', transition: 'color 0.35s ease' }}
                   >
                     {s.title}
                   </h3>
 
+                  {/* Description */}
                   <p
                     className="font-inter text-sm leading-relaxed mb-6"
                     style={{
@@ -142,38 +126,81 @@ export default function Services() {
                     {s.desc}
                   </p>
 
-                  <ul className="space-y-2.5 mb-7">
-                    {s.features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-center gap-2.5 font-inter text-sm"
+                  {/* Formules */}
+                  <div className="w-full space-y-3 mb-7 flex-1">
+                    {s.formulas.map((f) => (
+                      <div
+                        key={f.name}
+                        className="rounded-xl p-4 text-left"
                         style={{
-                          color: isHov ? 'rgba(255,255,255,0.72)' : 'rgba(10,10,10,0.65)',
-                          transition: 'color 0.35s ease',
+                          background: isHov ? 'rgba(255,255,255,0.06)' : `${s.accent}0d`,
+                          border: `1px solid ${isHov ? 'rgba(255,255,255,0.08)' : `${s.accent}22`}`,
+                          transition: 'background 0.35s ease, border-color 0.35s ease',
                         }}
                       >
-                        <div
-                          className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
-                          style={{ background: s.accent }}
-                        >
-                          <Check size={10} color="white" strokeWidth={3} />
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <span
+                            className="font-grotesk font-bold text-xs uppercase tracking-wide"
+                            style={{ color: s.accent }}
+                          >
+                            {f.name}
+                          </span>
+                          <span
+                            className="font-inter font-bold text-xs whitespace-nowrap"
+                            style={{
+                              color: isHov ? 'rgba(255,255,255,0.9)' : '#0a0a0a',
+                              transition: 'color 0.35s ease',
+                            }}
+                          >
+                            {f.price}
+                          </span>
                         </div>
-                        {f}
-                      </li>
+                        <p
+                          className="font-inter text-xs leading-relaxed"
+                          style={{
+                            color: isHov ? 'rgba(255,255,255,0.4)' : 'rgba(10,10,10,0.45)',
+                            transition: 'color 0.35s ease',
+                          }}
+                        >
+                          {f.detail}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
 
-                  <span
-                    className="inline-block px-4 py-1.5 rounded-full font-inter font-bold text-xs text-white"
-                    style={{ background: '#ff8e06' }}
+                  {/* CTA */}
+                  <motion.button
+                    onClick={() => onSelect({ type: s.type })}
+                    className="w-full py-3 rounded-xl font-inter font-semibold text-sm transition-all duration-300"
+                    style={
+                      isHov
+                        ? { background: s.accent, color: 'white' }
+                        : { border: `2px solid ${s.accent}`, color: s.accent, background: 'transparent' }
+                    }
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {s.badge}
-                  </span>
+                    Démarrer ce projet
+                  </motion.button>
+
                 </div>
               </motion.div>
             )
           })}
         </div>
+
+        {/* Maintenance note */}
+        <motion.div
+          className="mt-10 text-center"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="font-inter text-sm text-ink/40">
+            🔧 Maintenance optionnelle disponible — à partir de <span className="font-semibold text-ink/60">80€/mois</span> après livraison
+          </p>
+        </motion.div>
       </div>
     </section>
   )

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Linkedin } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const footerLinks = [
   { label: 'Accueil', href: '#home' },
@@ -35,7 +36,9 @@ export default function Footer() {
 
           <div className="flex gap-3">
             <motion.a
-              href="#"
+              href="https://www.linkedin.com/in/thomas-marinho-421848415"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-9 h-9 rounded-xl flex items-center justify-center text-white/35 hover:text-white/70 transition-colors"
               style={{ border: '1px solid rgba(255,255,255,0.09)' }}
               whileHover={{ scale: 1.12, y: -2 }}
@@ -59,9 +62,20 @@ export default function Footer() {
           <span className="font-inter text-white/25 text-sm">
             © 2026 Thomasmvrinho — Tous droits réservés
           </span>
-          <span className="font-inter text-white/25 text-sm">
-            Fait avec passion 💜🧡
-          </span>
+          <div className="flex gap-5">
+            <Link
+              to="/mentions-legales"
+              className="font-inter text-white/25 text-sm hover:text-white/60 transition-colors"
+            >
+              Mentions légales
+            </Link>
+            <Link
+              to="/cookies"
+              className="font-inter text-white/25 text-sm hover:text-white/60 transition-colors"
+            >
+              Politique de cookies
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

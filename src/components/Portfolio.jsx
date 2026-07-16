@@ -64,7 +64,7 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: i * 0.09 }}
               whileHover={{ y: -5, boxShadow: '0 20px 55px rgba(0,0,0,0.22)' }}
             >
-              <div className="rounded-[14px] overflow-hidden bg-white">
+              <div className="rounded-[14px] overflow-hidden bg-white h-full">
                 {/* Zone image */}
                 <div className={`relative overflow-hidden h-52 ${project.img ? 'bg-[#f5f5f7]' : 'bg-[#0a0a0a]'}`}>
                   {project.img ? (
@@ -134,13 +134,14 @@ export default function Portfolio() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <motion.button
-            className="px-8 py-4 rounded-full font-inter font-semibold text-brand border-2 border-brand hover:bg-brand hover:text-white transition-all duration-300"
+          <motion.a
+            href="#contact"
+            className="px-8 py-4 rounded-full font-inter font-semibold text-brand border-2 border-brand hover:bg-brand hover:text-white transition-all duration-300 inline-block"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
           >
-            Voir tous les projets →
-          </motion.button>
+            Démarrer un projet →
+          </motion.a>
         </motion.div>
       </div>
     </section>

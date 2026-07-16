@@ -4,28 +4,36 @@ import { ChevronDown } from 'lucide-react'
 
 const faqs = [
   {
-    q: "Combien de temps faut-il pour créer un site ?",
-    a: "Cela dépend de la complexité du projet. Un site vitrine simple est généralement livré en 1 à 2 semaines, tandis qu'un site e-commerce complet peut nécessiter 4 à 8 semaines. Je vous fournis un planning précis dès la validation du devis, avec des étapes claires.",
+    q: "Le devis est-il gratuit et sans engagement ?",
+    a: "Oui, totalement. Remplissez le formulaire de contact avec votre projet, je vous réponds sous 24h avec une estimation détaillée. Aucun engagement de votre côté avant la signature du devis.",
   },
   {
-    q: "Quelles technologies utilisez-vous ?",
-    a: "J'utilise principalement React et Next.js pour les sites modernes et performants, WordPress pour les projets nécessitant un CMS accessible, et Shopify pour l'e-commerce. Chaque projet reçoit la technologie la mieux adaptée à ses objectifs et à son budget.",
+    q: "Comment se passe le paiement ?",
+    a: "Je demande un acompte de 30 à 50 % à la signature du devis pour démarrer le projet. Le solde est réglé à la livraison finale, une fois que vous avez validé le résultat. Je peux aussi proposer un échéancier en 3 fois pour les projets au-dessus de 3 000 €.",
   },
   {
-    q: "Le site sera-t-il responsive (mobile) ?",
-    a: "Absolument. Tous mes sites sont développés avec une approche mobile-first : l'expérience est optimisée en priorité pour les smartphones, puis adaptée aux tablettes et aux ordinateurs. Aujourd'hui, plus de 60% du trafic web vient du mobile — c'est non négociable.",
+    q: "Les délais affichés sont-ils garantis ?",
+    a: "Oui — à condition que les éléments de votre côté (textes, photos, retours sur maquettes) arrivent dans les délais convenus. Dès la signature, je vous fournis un planning avec des jalons précis. Si un imprévu de ma part retarde la livraison, je vous en informe immédiatement.",
   },
   {
-    q: "Proposez-vous la maintenance après la livraison ?",
-    a: "Oui, je propose des contrats de maintenance mensuelle incluant les mises à jour de sécurité, les sauvegardes régulières, les modifications mineures de contenu et l'assistance technique. Différents forfaits sont disponibles selon vos besoins.",
+    q: "L'hébergement et le nom de domaine sont-ils inclus ?",
+    a: "Ils ne sont pas inclus dans le prix affiché, mais je m'occupe de tout configurer pour vous. Le coût d'un hébergement de qualité tourne autour de 5 à 15 €/mois selon le projet, et un nom de domaine coûte environ 10 à 15 €/an. Je vous conseille les meilleures options selon votre budget.",
   },
   {
-    q: "Comment se passe le processus de création ?",
-    a: "Le projet se déroule en 4 étapes : un échange approfondi pour comprendre votre vision, la création de maquettes que vous validez avant tout développement, la phase de développement avec des points réguliers, puis la mise en ligne et une formation à l'utilisation de votre site.",
+    q: "Dois-je fournir les textes et les photos ?",
+    a: "C'est idéal, car vous connaissez votre activité mieux que personne. Si vous n'avez pas de photos professionnelles, je peux intégrer des visuels libres de droits adaptés à votre secteur. Pour les textes, je peux vous aider à les structurer ou vous orienter vers un rédacteur.",
   },
   {
-    q: "Puis-je modifier mon site moi-même après la livraison ?",
-    a: "Oui, si votre projet intègre un CMS (WordPress, Shopify…), vous pourrez modifier vos textes, images et produits de façon totalement autonome. Je vous forme à son utilisation et vous fournis une documentation personnalisée pour prendre votre site en main sereinement.",
+    q: "Combien de modifications puis-je demander ?",
+    a: "Deux tours de retours sont inclus après chaque étape clé (maquette, développement). En dehors de ça, les modifications mineures sont traitées rapidement et gratuitement dans les 14 à 30 jours suivant la livraison selon la formule. Au-delà, elles sont facturées à un tarif horaire transparent.",
+  },
+  {
+    q: "Que comprend exactement la maintenance et à quel prix ?",
+    a: "Le tarif varie selon votre projet : 80 €/mois pour un site vitrine, 150 €/mois pour un e-commerce, 200 €/mois pour une application web. Chaque formule inclut les mises à jour de sécurité, la surveillance de disponibilité, les sauvegardes hebdomadaires et jusqu'à 1h de modifications de contenu par mois. C'est optionnel — si vous préférez gérer votre site vous-même, je vous forme à son utilisation à la livraison.",
+  },
+  {
+    q: "Pourquoi choisir un freelance plutôt qu'une agence ?",
+    a: "Vous travaillez directement avec moi du brief à la mise en ligne — pas d'intermédiaire, pas de chef de projet qui transmet vos retours à un développeur que vous n'avez jamais rencontré. La communication est directe, les délais sont plus courts, et le prix reflète le travail réel sans les frais de structure d'une agence.",
   },
 ]
 

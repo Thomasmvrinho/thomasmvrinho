@@ -11,10 +11,10 @@ const testimonials = [
     stars: 5,
   },
   {
-    name: 'Sophie Martin',
-    role: 'Gérante — Maison Rivière',
-    text: "J'avais un vieux site qui faisait vraiment amateur. Thomas a tout repris from scratch, il a même proposé des idées auxquelles je n'avais pas pensé pour la mise en avant des collections. Le résultat est exactement ce que je cherchais sans savoir l'exprimer.",
-    img: 'https://placehold.co/80x80/c97efd/ffffff?text=SM',
+    name: 'Emma.M',
+    role: 'Gérante — By-Emma',
+    text: "J'avais un vieux site qui faisait vraiment amateur. Thomas a tout refait de zéro, il m'a même proposé des idées pour mieux mettre en avant mes collections. Le résultat est exactement ce que je voulais sans savoir comment l'expliquer.",
+    img: 'https://placehold.co/80x80/c97efd/ffffff?text=EM',
     stars: 5,
   },
   {

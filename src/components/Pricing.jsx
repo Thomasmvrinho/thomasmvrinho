@@ -3,53 +3,59 @@ import { Check } from 'lucide-react'
 
 const plans = [
   {
-    name: 'Essentiel',
-    desc: 'Site Vitrine — 1 à 5 pages',
-    price: 'À partir de 990€',
+    name: 'Vitrine Standard',
+    desc: 'Site Vitrine — 3 à 5 pages',
+    price: '1 500 – 2 500€',
+    type: 'vitrine',
+    formule: 'standard',
     features: [
-      'Design personnalisé',
-      'Responsive mobile',
-      'SEO de base',
-      'Formulaire de contact',
-      'Livraison sous 2 semaines',
+      'Design sur-mesure',
+      '3 à 5 pages',
+      'Animations avancées',
+      'SEO optimisé',
+      'Blog intégré',
+      'Support 14 jours',
     ],
-    cta: 'Choisir cette offre',
+    cta: 'Démarrer ce projet',
     highlight: false,
   },
   {
-    name: 'Business',
-    desc: 'Site Vitrine avancé — 5 à 10 pages',
-    price: 'À partir de 1 490€',
+    name: 'E-commerce',
+    desc: 'Boutique Shopify — jusqu\'à 30 produits',
+    price: '2 000 – 3 500€',
+    type: 'ecommerce',
+    formule: 'essentiel',
     features: [
-      'Tout de Essentiel',
-      'Blog intégré',
-      'Animations avancées',
-      'Galerie & CMS',
-      'Livraison sous 3 semaines',
-      'Support 14 jours',
+      'Thème Shopify personnalisé',
+      'Catalogue produits',
+      'Paiement sécurisé',
+      'Gestion commandes',
+      'SEO e-commerce',
+      'Support 30 jours',
     ],
-    cta: 'Choisir cette offre',
+    cta: 'Démarrer ce projet',
     highlight: true,
     badge: 'Populaire',
   },
   {
-    name: 'E-commerce',
-    desc: 'Boutique en ligne complète',
-    price: 'À partir de 1 990€',
+    name: 'Application Web',
+    desc: 'MVP — Fonctionnalités essentielles',
+    price: '4 000 – 8 000€',
+    type: 'app',
+    formule: 'mvp',
     features: [
-      'Catalogue produits',
-      'Paiement sécurisé',
-      'Gestion commandes',
-      'Tableau de bord',
-      'SEO e-commerce',
-      'Support 30 jours',
+      'Design sur-mesure',
+      'Responsive mobile',
+      'Fonctionnalités essentielles',
+      'Une plateforme (web ou mobile)',
+      'Livraison rapide',
     ],
-    cta: 'Choisir cette offre',
+    cta: 'Démarrer ce projet',
     highlight: false,
   },
 ]
 
-export default function Pricing() {
+export default function Pricing({ onSelect }) {
   return (
     <section id="pricing" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -96,14 +102,14 @@ export default function Pricing() {
                       {plan.badge}
                     </span>
                   )}
-                  <PlanCard plan={plan} highlighted />
+                  <PlanCard plan={plan} highlighted onSelect={onSelect} />
                 </div>
               ) : (
                 <div
                   className="rounded-2xl h-full"
                   style={{ boxShadow: '0 2px 20px rgba(0,0,0,0.07)', border: '1px solid rgba(0,0,0,0.07)' }}
                 >
-                  <PlanCard plan={plan} highlighted={false} />
+                  <PlanCard plan={plan} highlighted={false} onSelect={onSelect} />
                 </div>
               )}
             </motion.div>
@@ -114,10 +120,10 @@ export default function Pricing() {
   )
 }
 
-function PlanCard({ plan, highlighted }) {
+function PlanCard({ plan, highlighted, onSelect }) {
   return (
     <div
-      className="rounded-[14px] p-8 flex flex-col"
+      className="rounded-[14px] p-8 flex flex-col h-full"
       style={{ background: highlighted ? 'rgba(201,126,253,0.04)' : 'white' }}
     >
       <h3 className="font-grotesk font-bold text-xl text-ink mb-1">{plan.name}</h3>
@@ -127,10 +133,10 @@ function PlanCard({ plan, highlighted }) {
           À partir de
         </span>
         <span
-          className="font-grotesk font-bold text-3xl"
+          className="font-grotesk font-bold text-2xl"
           style={{ color: '#0a0a0a' }}
         >
-          {plan.price.replace('À partir de ', '')}
+          {plan.price}
         </span>
       </div>
 
@@ -155,7 +161,8 @@ function PlanCard({ plan, highlighted }) {
       </ul>
 
       <motion.button
-        className="w-full py-3.5 rounded-xl font-inter font-semibold text-sm transition-all duration-300"
+        onClick={() => onSelect({ type: plan.type, formule: plan.formule })}
+        className="w-full py-3.5 rounded-xl font-inter font-semibold text-sm transition-all duration-300 flex items-center justify-center"
         style={
           highlighted
             ? { background: 'linear-gradient(135deg, #c97efd, #ff8e06)', color: 'white' }

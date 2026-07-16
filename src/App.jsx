@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
@@ -10,28 +12,49 @@ import Pricing from './components/Pricing'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import CursorFollower from './components/CursorFollower'
 import ScrollProgress from './components/ScrollProgress'
+import MentionsLegales from './pages/MentionsLegales'
+import CookiesPage from './pages/CookiesPage'
 
-export default function App() {
+function HomePage() {
+  const [preselect, setPreselect] = useState(null)
+
+  const handleSelect = (selection) => {
+    setPreselect(selection)
+    setTimeout(() => {
+      document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+    }, 50)
+  }
+
   return (
     <div>
-      <CursorFollower />
       <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
         <Marquee />
-        <Services />
+        <Services onSelect={handleSelect} />
         <Process />
         <Portfolio />
         <Stats />
         <Testimonials />
-        <Pricing />
+        <Pricing onSelect={handleSelect} />
         <FAQ />
-        <Contact />
+        <Contact preselect={preselect} />
       </main>
       <Footer />
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/cookies" element={<CookiesPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
