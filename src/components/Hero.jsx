@@ -169,7 +169,7 @@ export default function Hero() {
                 </div>
                 <div style={{ height: '300px', overflow: 'hidden', background: '#080708' }}>
                   <img
-                    src="/logo-thomas.png"
+                    src="/logo-thomas.webp"
                     alt="Thomasmvrinho"
                     style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center center' }}
                     loading="lazy"

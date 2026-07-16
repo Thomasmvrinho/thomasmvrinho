@@ -36,7 +36,7 @@ export default function Preloader() {
       setTimeout(() => setVisible(false), 600)
     }
 
-    const minDelay = setTimeout(finish, 3000)
+    const minDelay = setTimeout(finish, 1200)
     window.addEventListener('load', () => { clearTimeout(minDelay); finish() })
 
     return () => { clearInterval(interval); clearTimeout(minDelay) }

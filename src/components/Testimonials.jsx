@@ -7,14 +7,14 @@ const testimonials = [
     name: 'Adrien.L',
     role: 'Directeur — ADMARKETING',
     text: "Un travail remarquable, livré dans les temps et dans le budget. Thomas a su comprendre parfaitement nos besoins et créer un site qui dépasse toutes nos attentes. Professionnalisme irréprochable.",
-    img: '/adrien-memoji.png',
+    img: '/adrien-memoji.webp',
     stars: 5,
   },
   {
     name: 'Emma.M',
     role: 'Gérante — By-Emma',
     text: "J'avais un vieux site qui faisait vraiment amateur. Thomas a tout refait de zéro, il m'a même proposé des idées pour mieux mettre en avant mes collections. Le résultat est exactement ce que je voulais sans savoir comment l'expliquer.",
-    img: '/emma-memoji.png',
+    img: '/emma-memoji.webp',
     stars: 5,
   },
 ]

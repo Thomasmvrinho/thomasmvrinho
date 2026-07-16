@@ -5,7 +5,7 @@ const projects = [
   {
     title: 'ADMARKETING',
     tags: ['Vitrine', "Apporteur d'Affaires"],
-    img: '/admarketing.png',
+    img: '/admarketing.webp',
     link: 'https://admarketing-ten.vercel.app/',
     accent: '#c97efd',
   },
