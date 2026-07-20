@@ -48,10 +48,10 @@ export default function MentionsLegales() {
               <br />
               Email :{' '}
               <a
-                href="mailto:thomasmvrinho@outlook.com"
+                href="mailto:contact@thomasmvrinho.com"
                 className="text-purple-400 hover:text-purple-300 transition-colors"
               >
-                thomasmvrinho@outlook.com
+                contact@thomasmvrinho.com
               </a>
             </p>
           </Section>
@@ -90,10 +90,10 @@ export default function MentionsLegales() {
               Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos
               données. Pour exercer ce droit, contactez :{' '}
               <a
-                href="mailto:thomasmvrinho@outlook.com"
+                href="mailto:contact@thomasmvrinho.com"
                 className="text-purple-400 hover:text-purple-300 transition-colors"
               >
-                thomasmvrinho@outlook.com
+                contact@thomasmvrinho.com
               </a>
             </p>
           </Section>

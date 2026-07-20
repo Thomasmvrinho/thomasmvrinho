@@ -405,7 +405,7 @@ export default function Contact({ preselect }) {
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             {[
-              { Icon: Mail, label: 'Email', value: 'Thomasmvrinho@outlook.com', href: 'mailto:Thomasmvrinho@outlook.com' },
+              { Icon: Mail, label: 'Email', value: 'contact@thomasmvrinho.com', href: 'mailto:contact@thomasmvrinho.com' },
               { Icon: Phone, label: 'Téléphone', value: '07 82 64 21 08', href: 'tel:+33782642108' },
               { Icon: MapPin, label: 'Localisation', value: 'Basé en Île-de-France 🇫🇷', href: null },
             ].map(({ Icon, label, value, href }) => (

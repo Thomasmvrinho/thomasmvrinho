@@ -107,10 +107,10 @@ export default function CookiesPage() {
             <p>
               Pour toute question, contactez :{' '}
               <a
-                href="mailto:thomasmvrinho@outlook.com"
+                href="mailto:contact@thomasmvrinho.com"
                 className="text-orange-400 hover:text-orange-300 transition-colors"
               >
-                thomasmvrinho@outlook.com
+                contact@thomasmvrinho.com
               </a>
             </p>
           </Section>
