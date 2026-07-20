@@ -176,6 +176,7 @@ export default function Contact({ preselect }) {
     setLoading(true)
     const typeLabel = { vitrine: 'Site Vitrine', ecommerce: 'Site E-commerce', app: 'Application Web & Mobile', autre: 'Autre' }[answers.type] || answers.type
     const templateParams = {
+      subject: `Nouvelle demande — ${typeLabel}`,
       from_name: form.name,
       from_email: form.email,
       type: typeLabel,
