@@ -14,9 +14,9 @@ export default {
         cloud: '#f5f5f7',
       },
       fontFamily: {
-        grotesk: ['"Space Grotesk"', 'sans-serif'],
-        syne: ['Syne', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        grotesk: ['"Space Grotesk Variable"', '"Space Grotesk"', 'sans-serif'],
+        syne: ['"Syne Variable"', 'Syne', 'sans-serif'],
+        inter: ['"Inter Variable"', 'Inter', 'sans-serif'],
       },
       animation: {
         float: 'float 6s ease-in-out infinite',
