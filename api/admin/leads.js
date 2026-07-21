@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     const { id, ...updates } = req.body ?? {}
     if (!id) return res.status(400).json({ error: 'id requis.' })
 
-    const ALLOWED_FIELDS = ['status', 'notes', 'montant']
+    const ALLOWED_FIELDS = ['status', 'notes', 'montant', 'relance_at']
     const patch = Object.fromEntries(
       Object.entries(updates).filter(([k]) => ALLOWED_FIELDS.includes(k))
     )
