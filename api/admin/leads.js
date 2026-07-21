@@ -24,13 +24,20 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'PATCH') {
-    const { id, status } = req.body ?? {}
-    if (!id || !status) return res.status(400).json({ error: 'id et status requis.' })
+    const { id, ...updates } = req.body ?? {}
+    if (!id) return res.status(400).json({ error: 'id requis.' })
 
-    const VALID = ['nouveau', 'en_discussion', 'signe', 'perdu', 'supprime']
-    if (!VALID.includes(status)) return res.status(400).json({ error: 'Status invalide.' })
+    const ALLOWED_FIELDS = ['status', 'notes', 'montant']
+    const patch = Object.fromEntries(
+      Object.entries(updates).filter(([k]) => ALLOWED_FIELDS.includes(k))
+    )
 
-    const { error } = await supabase.from('leads').update({ status }).eq('id', id)
+    if (patch.status) {
+      const VALID = ['nouveau', 'en_discussion', 'signe', 'perdu', 'supprime']
+      if (!VALID.includes(patch.status)) return res.status(400).json({ error: 'Status invalide.' })
+    }
+
+    const { error } = await supabase.from('leads').update(patch).eq('id', id)
     if (error) return res.status(500).json({ error: error.message })
     return res.status(200).json({ ok: true })
   }

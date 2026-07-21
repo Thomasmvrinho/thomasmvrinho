@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const LABELS = {
@@ -30,23 +30,43 @@ function StatusBadge({ status }) {
   return <span className={`inline-block text-[11px] font-semibold border rounded-full px-2.5 py-0.5 ${cfg.color}`}>{cfg.label}</span>
 }
 
-function LeadCard({ lead, onStatusChange }) {
+function isOlderThan48h(dateStr) {
+  return Date.now() - new Date(dateStr).getTime() > 48 * 60 * 60 * 1000
+}
+
+function LeadCard({ lead, onUpdate }) {
   const [open, setOpen] = useState(false)
   const [updating, setUpdating] = useState(false)
+  const [notes, setNotes] = useState(lead.notes ?? '')
+  const [montant, setMontant] = useState(lead.montant ?? '')
+  const notesTimer = useRef(null)
   const token = localStorage.getItem('admin_token')
 
-  async function changeStatus(newStatus) {
+  const needsRelance = lead.status === 'nouveau' && isOlderThan48h(lead.created_at)
+
+  async function patch(fields) {
     setUpdating(true)
     try {
       await fetch('/api/admin/leads', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ id: lead.id, status: newStatus }),
+        body: JSON.stringify({ id: lead.id, ...fields }),
       })
-      onStatusChange(lead.id, newStatus)
+      onUpdate(lead.id, fields)
     } finally {
       setUpdating(false)
     }
+  }
+
+  function handleNotesChange(val) {
+    setNotes(val)
+    clearTimeout(notesTimer.current)
+    notesTimer.current = setTimeout(() => patch({ notes: val }), 800)
+  }
+
+  function handleMontantBlur() {
+    const val = montant === '' ? null : parseInt(montant, 10)
+    patch({ montant: val })
   }
 
   const date = new Date(lead.created_at).toLocaleDateString('fr-FR', {
@@ -54,7 +74,16 @@ function LeadCard({ lead, onStatusChange }) {
   })
 
   return (
-    <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl overflow-hidden transition-all hover:border-white/[0.14]">
+    <div className={`border rounded-2xl overflow-hidden transition-all hover:border-white/[0.14] ${
+      needsRelance ? 'bg-orange-500/[0.04] border-orange-500/30' : 'bg-white/[0.03] border-white/[0.08]'
+    }`}>
+      {/* Alerte relance */}
+      {needsRelance && (
+        <div className="px-5 pt-3 flex items-center gap-1.5">
+          <span className="text-orange-400 text-[11px] font-semibold">⚡ À relancer — plus de 48h sans action</span>
+        </div>
+      )}
+
       {/* Header */}
       <div className="p-5 flex items-start gap-4">
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand/30 to-energy/30 flex items-center justify-center text-white font-grotesk font-bold text-sm flex-shrink-0">
@@ -69,6 +98,11 @@ function LeadCard({ lead, onStatusChange }) {
           {lead.phone && <span className="text-white/30 text-xs"> · {lead.phone}</span>}
           <p className="text-white/30 text-[11px] mt-0.5">{date}</p>
         </div>
+        {lead.montant && (
+          <div className="text-right flex-shrink-0">
+            <span className="text-green-400 font-grotesk font-bold text-sm">{lead.montant.toLocaleString('fr-FR')} €</span>
+          </div>
+        )}
         <button onClick={() => setOpen(v => !v)} className="text-white/30 hover:text-white transition-colors flex-shrink-0 p-1">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <path d={open ? 'M18 15l-6-6-6 6' : 'M6 9l6 6 6-6'}/>
@@ -104,6 +138,36 @@ function LeadCard({ lead, onStatusChange }) {
               </div>
             </div>
           )}
+
+          {/* Montant */}
+          <div>
+            <p className="text-[11px] font-semibold text-white/30 uppercase tracking-wider mb-1.5">Montant du devis (€)</p>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                value={montant}
+                onChange={e => setMontant(e.target.value)}
+                onBlur={handleMontantBlur}
+                placeholder="Ex : 2500"
+                className="w-40 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-brand/40 transition-colors placeholder-white/20"
+              />
+              <span className="text-white/30 text-sm">€</span>
+              {updating && <span className="text-white/20 text-xs">Sauvegarde…</span>}
+            </div>
+          </div>
+
+          {/* Notes */}
+          <div>
+            <p className="text-[11px] font-semibold text-white/30 uppercase tracking-wider mb-1.5">Notes privées</p>
+            <textarea
+              value={notes}
+              onChange={e => handleNotesChange(e.target.value)}
+              placeholder="Tes notes sur ce prospect — sauvegarde automatique"
+              rows={3}
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-white/80 text-sm outline-none focus:border-brand/40 transition-colors placeholder-white/20 resize-none"
+            />
+          </div>
+
           {/* Status changer */}
           <div>
             <p className="text-[11px] font-semibold text-white/30 uppercase tracking-wider mb-2">Changer le statut</p>
@@ -111,7 +175,7 @@ function LeadCard({ lead, onStatusChange }) {
               {Object.entries(STATUS_CONFIG).map(([key, cfg]) => (
                 <button
                   key={key}
-                  onClick={() => changeStatus(key)}
+                  onClick={() => patch({ status: key })}
                   disabled={updating || lead.status === key}
                   className={`text-xs border rounded-full px-3 py-1 transition-all disabled:opacity-40 ${
                     lead.status === key ? cfg.color : 'border-white/10 text-white/40 hover:border-white/30 hover:text-white/70'
@@ -132,6 +196,7 @@ export default function AdminDashboard() {
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('tous')
+  const [search, setSearch] = useState('')
   const navigate = useNavigate()
   const token = localStorage.getItem('admin_token')
 
@@ -144,7 +209,7 @@ export default function AdminDashboard() {
       if (res.status === 401) { navigate('/admin/login'); return }
       setLeads(await res.json())
     } catch {
-      // silently fail, keep current state
+      // silently fail
     } finally {
       setLoading(false)
     }
@@ -152,8 +217,8 @@ export default function AdminDashboard() {
 
   useEffect(() => { fetchLeads() }, [fetchLeads])
 
-  function handleStatusChange(id, newStatus) {
-    setLeads(prev => prev.map(l => l.id === id ? { ...l, status: newStatus } : l))
+  function handleUpdate(id, fields) {
+    setLeads(prev => prev.map(l => l.id === id ? { ...l, ...fields } : l))
   }
 
   function logout() {
@@ -166,10 +231,23 @@ export default function AdminDashboard() {
     ? leads.filter(l => l.status === 'supprime')
     : filter === 'tous' ? visibleLeads : visibleLeads.filter(l => l.status === filter)
 
+  const searched = search.trim()
+    ? filtered.filter(l =>
+        l.name.toLowerCase().includes(search.toLowerCase()) ||
+        l.email.toLowerCase().includes(search.toLowerCase())
+      )
+    : filtered
+
   const counts = visibleLeads.reduce((acc, l) => {
     acc[l.status] = (acc[l.status] ?? 0) + 1
     return acc
   }, {})
+
+  const caSign = leads
+    .filter(l => l.status === 'signe' && l.montant)
+    .reduce((sum, l) => sum + l.montant, 0)
+
+  const relanceCount = visibleLeads.filter(l => l.status === 'nouveau' && isOlderThan48h(l.created_at)).length
 
   return (
     <div className="min-h-screen bg-pitch text-white">
@@ -178,12 +256,19 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-3">
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand to-energy flex items-center justify-center">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="white" stroke="none">
-              <path d="M3 3h18v18H3z" opacity="0" /><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
             </svg>
           </div>
           <span className="font-grotesk font-semibold text-sm">Dashboard Leads</span>
         </div>
-        <button onClick={logout} className="text-white/30 hover:text-white/60 text-xs transition-colors">Déconnexion</button>
+        <div className="flex items-center gap-4">
+          {caSign > 0 && (
+            <span className="text-green-400 text-sm font-grotesk font-semibold">
+              CA signé : {caSign.toLocaleString('fr-FR')} €
+            </span>
+          )}
+          <button onClick={logout} className="text-white/30 hover:text-white/60 text-xs transition-colors">Déconnexion</button>
+        </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-8">
@@ -210,20 +295,39 @@ export default function AdminDashboard() {
           ))}
         </div>
 
+        {/* Alerte relance globale */}
+        {relanceCount > 0 && filter !== 'supprime' && (
+          <div className="mb-4 bg-orange-500/10 border border-orange-500/20 rounded-xl px-4 py-3 flex items-center gap-2">
+            <span className="text-orange-400 text-sm">⚡ {relanceCount} lead{relanceCount > 1 ? 's' : ''} à relancer — en attente depuis plus de 48h</span>
+          </div>
+        )}
+
+        {/* Recherche */}
+        <div className="relative mb-6">
+          <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Rechercher par nom ou email…"
+            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-9 pr-4 py-2.5 text-white text-sm outline-none focus:border-brand/40 transition-colors placeholder-white/25"
+          />
+        </div>
+
         {/* Leads list */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="w-6 h-6 border-2 border-brand/30 border-t-brand rounded-full animate-spin" />
           </div>
-        ) : filtered.length === 0 ? (
+        ) : searched.length === 0 ? (
           <div className="text-center py-20 text-white/30">
             <p className="text-4xl mb-3">📭</p>
-            <p className="text-sm">{filter === 'tous' ? 'Aucun lead pour le moment.' : 'Aucun lead dans cette catégorie.'}</p>
+            <p className="text-sm">{search ? 'Aucun résultat.' : filter === 'tous' ? 'Aucun lead pour le moment.' : 'Aucun lead dans cette catégorie.'}</p>
           </div>
         ) : (
           <div className="space-y-3">
-            {filtered.map(lead => (
-              <LeadCard key={lead.id} lead={lead} onStatusChange={handleStatusChange} />
+            {searched.map(lead => (
+              <LeadCard key={lead.id} lead={lead} onUpdate={handleUpdate} />
             ))}
           </div>
         )}
