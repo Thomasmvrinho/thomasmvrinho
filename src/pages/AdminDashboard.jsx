@@ -162,7 +162,9 @@ export default function AdminDashboard() {
   }
 
   const visibleLeads = leads.filter(l => l.status !== 'supprime')
-  const filtered = filter === 'tous' ? visibleLeads : visibleLeads.filter(l => l.status === filter)
+  const filtered = filter === 'supprime'
+    ? leads.filter(l => l.status === 'supprime')
+    : filter === 'tous' ? visibleLeads : visibleLeads.filter(l => l.status === filter)
 
   const counts = visibleLeads.reduce((acc, l) => {
     acc[l.status] = (acc[l.status] ?? 0) + 1
@@ -186,12 +188,14 @@ export default function AdminDashboard() {
 
       <div className="max-w-3xl mx-auto px-6 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3">
           {[
             { key: 'tous', label: 'Total', count: visibleLeads.length, color: 'text-white' },
             { key: 'nouveau', label: 'Nouveaux', count: counts.nouveau ?? 0, color: 'text-blue-400' },
             { key: 'en_discussion', label: 'En discussion', count: counts.en_discussion ?? 0, color: 'text-yellow-400' },
             { key: 'signe', label: 'Signés', count: counts.signe ?? 0, color: 'text-green-400' },
+            { key: 'perdu', label: 'Perdus', count: counts.perdu ?? 0, color: 'text-red-400' },
+            { key: 'supprime', label: 'Supprimés', count: leads.filter(l => l.status === 'supprime').length, color: 'text-white/25' },
           ].map(s => (
             <button
               key={s.key}
