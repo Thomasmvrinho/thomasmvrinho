@@ -20,6 +20,8 @@ import ScrollProgress from './components/ScrollProgress'
 import MentionsLegales from './pages/MentionsLegales'
 import CookiesPage from './pages/CookiesPage'
 import CookieBanner from './components/CookieBanner'
+import AdminLogin from './pages/AdminLogin'
+import AdminDashboard from './pages/AdminDashboard'
 
 function useLenis() {
   useEffect(() => {
@@ -72,6 +74,8 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cookies" element={<CookiesPage />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
       <Analytics />
     </BrowserRouter>

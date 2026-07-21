@@ -1,8 +1,10 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { Resend } from 'resend'
+import { createClient } from '@supabase/supabase-js'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 const resend = new Resend(process.env.RESEND_API_KEY)
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY)
 
 const LABELS = {
   type: { vitrine: 'Site Vitrine', ecommerce: 'Site E-commerce', app: 'Application Web & Mobile', autre: 'Autre' },
@@ -61,15 +63,22 @@ function buildClientHtml(name, bodyText) {
       <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);">
         <!-- Header -->
         <tr>
-          <td style="background:linear-gradient(135deg,#c97efd,#ff8e06);padding:32px 40px;">
-            <p style="margin:0;font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.3px;">Thomas Marinho</p>
-            <p style="margin:4px 0 0;font-size:13px;color:rgba(255,255,255,0.8);">Développeur Web Freelance</p>
+          <td style="background:linear-gradient(135deg,#c97efd,#ff8e06);padding:28px 40px;text-align:center;">
+            <img src="https://www.thomasmvrinho.com/logo-thomas.png" alt="Thomas Marinho" width="160" style="display:block;margin:0 auto;height:auto;" />
           </td>
         </tr>
         <!-- Body -->
         <tr>
-          <td style="padding:40px 40px 32px;color:#1a1a1a;font-size:15px;line-height:1.7;">
+          <td style="padding:40px 40px 24px;color:#1a1a1a;font-size:15px;line-height:1.7;">
             ${lines}
+          </td>
+        </tr>
+        <!-- Mention réponse -->
+        <tr>
+          <td style="padding:0 40px 24px;">
+            <div style="background:#faf5ff;border-left:3px solid #c97efd;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#7c3aed;">
+              ✅ Votre demande a bien été reçue.
+            </div>
           </td>
         </tr>
         <!-- Footer -->
@@ -77,6 +86,14 @@ function buildClientHtml(name, bodyText) {
           <td style="padding:0 40px 32px;">
             <div style="border-top:1px solid #eee;padding-top:24px;font-size:12px;color:#999;">
               Vous recevez cet email car vous avez soumis une demande de devis sur <a href="https://www.thomasmvrinho.com" style="color:#c97efd;text-decoration:none;">thomasmvrinho.com</a>.
+              <div style="margin-top:12px;line-height:1.8;">
+                <a href="mailto:contact@thomasmvrinho.com" style="color:#c97efd;text-decoration:none;">contact@thomasmvrinho.com</a><br/>
+                <a href="tel:+33782642108" style="color:#999;text-decoration:none;">07 82 64 21 08</a>
+              </div>
+              <div style="margin-top:12px;">
+                <a href="https://www.linkedin.com/in/thomas-marinho-421848415" style="display:inline-block;background:#0077b5;color:#fff;text-decoration:none;font-size:11px;font-weight:600;padding:5px 12px;border-radius:4px;margin-right:6px;">in LinkedIn</a>
+                <a href="https://www.thomasmvrinho.com" style="display:inline-block;background:linear-gradient(135deg,#c97efd,#ff8e06);color:#fff;text-decoration:none;font-size:11px;font-weight:600;padding:5px 12px;border-radius:4px;">🌐 Mon portfolio</a>
+              </div>
             </div>
           </td>
         </tr>
@@ -152,6 +169,21 @@ export default async function handler(req, res) {
     ])
     if (err1) throw new Error(`Resend client: ${err1.message}`)
     if (err2) throw new Error(`Resend notif: ${err2.message}`)
+
+    await supabase.from('leads').insert({
+      name: form.name,
+      email: form.email,
+      phone: form.phone || null,
+      type: answers.type || null,
+      secteur: answers.secteur || null,
+      situation: answers.situation || null,
+      objectif: answers.objectif || null,
+      budget: answers.budget || null,
+      delai: answers.delai || null,
+      preparation: answers.preparation || null,
+      message: form.message || null,
+      auto_reply: autoReply,
+    })
 
     return res.status(200).json({ ok: true })
   } catch (err) {

@@ -1,8 +1,8 @@
 {
   "functions": {
-    "api/contact.js": {
-      "maxDuration": 30
-    }
+    "api/contact.js": { "maxDuration": 30 },
+    "api/admin/login.js": { "maxDuration": 10 },
+    "api/admin/leads.js": { "maxDuration": 10 }
   },
   "headers": [
     {
