@@ -59,8 +59,15 @@ function LeadCard({ lead, onUpdate }) {
   const [notes, setNotes] = useState(lead.notes ?? '')
   const [montant, setMontant] = useState(lead.montant ?? '')
   const [relanceAt, setRelanceAt] = useState(lead.relance_at ?? '')
+  const [copied, setCopied] = useState(false)
   const notesTimer = useRef(null)
   const token = localStorage.getItem('admin_token')
+
+  function copyEmail() {
+    navigator.clipboard.writeText(lead.email)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const alert = relanceAlert(lead)
 
@@ -141,15 +148,19 @@ function LeadCard({ lead, onUpdate }) {
         </div>
         {/* Contact rapide */}
         <div className="flex items-center gap-1.5 flex-shrink-0">
-          <a
-            href={`mailto:${lead.email}`}
-            title="Envoyer un email"
-            className="w-8 h-8 rounded-lg bg-brand/10 hover:bg-brand/20 border border-brand/20 flex items-center justify-center transition-colors"
+          <button
+            onClick={copyEmail}
+            title={copied ? 'Copié !' : 'Copier l\'email'}
+            className={`w-8 h-8 rounded-lg border flex items-center justify-center transition-all ${copied ? 'bg-green-500/20 border-green-500/30' : 'bg-brand/10 hover:bg-brand/20 border-brand/20'}`}
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c97efd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-          </a>
+            {copied ? (
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            ) : (
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c97efd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            )}
+          </button>
           {lead.phone && (
             <a
               href={`tel:${lead.phone}`}
