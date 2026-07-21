@@ -22,6 +22,7 @@ import CookiesPage from './pages/CookiesPage'
 import CookieBanner from './components/CookieBanner'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
+import NotFound from './pages/NotFound'
 
 function useLenis() {
   useEffect(() => {
@@ -76,6 +77,7 @@ export default function App() {
         <Route path="/cookies" element={<CookiesPage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Analytics />
     </BrowserRouter>
