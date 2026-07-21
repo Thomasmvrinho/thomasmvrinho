@@ -161,7 +161,7 @@ function PlanCard({ plan, highlighted, onSelect }) {
       </ul>
 
       <motion.button
-        onClick={() => onSelect({ type: plan.type, formule: plan.formule })}
+        onClick={() => onSelect({ type: plan.type })}
         className="w-full py-3.5 rounded-xl font-inter font-semibold text-sm transition-all duration-300 flex items-center justify-center"
         style={
           highlighted

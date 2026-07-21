@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
+import { MotionConfig } from 'framer-motion'
+import Lenis from 'lenis'
 import Preloader from './components/Preloader'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -19,7 +21,17 @@ import MentionsLegales from './pages/MentionsLegales'
 import CookiesPage from './pages/CookiesPage'
 import CookieBanner from './components/CookieBanner'
 
+function useLenis() {
+  useEffect(() => {
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf) }
+    requestAnimationFrame(raf)
+    return () => lenis.destroy()
+  }, [])
+}
+
 function HomePage() {
+  useLenis()
   const [preselect, setPreselect] = useState(null)
 
   const handleSelect = (selection) => {
@@ -52,6 +64,7 @@ function HomePage() {
 
 export default function App() {
   return (
+    <MotionConfig reducedMotion="user">
     <BrowserRouter>
       <Preloader />
       <CookieBanner />
@@ -62,5 +75,6 @@ export default function App() {
       </Routes>
       <Analytics />
     </BrowserRouter>
+    </MotionConfig>
   )
 }
