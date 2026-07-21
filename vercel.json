@@ -4,6 +4,9 @@
     "api/admin/login.js": { "maxDuration": 10 },
     "api/admin/leads.js": { "maxDuration": 10 }
   },
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
