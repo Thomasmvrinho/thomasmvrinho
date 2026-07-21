@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     const { id, status } = req.body ?? {}
     if (!id || !status) return res.status(400).json({ error: 'id et status requis.' })
 
-    const VALID = ['nouveau', 'en_discussion', 'signe', 'perdu']
+    const VALID = ['nouveau', 'en_discussion', 'signe', 'perdu', 'supprime']
     if (!VALID.includes(status)) return res.status(400).json({ error: 'Status invalide.' })
 
     const { error } = await supabase.from('leads').update({ status }).eq('id', id)

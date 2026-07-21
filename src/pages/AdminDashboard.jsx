@@ -16,6 +16,7 @@ const STATUS_CONFIG = {
   en_discussion: { label: 'En discussion', color: 'bg-yellow-500/15 text-yellow-300 border-yellow-500/20' },
   signe: { label: 'Signé', color: 'bg-green-500/15 text-green-300 border-green-500/20' },
   perdu: { label: 'Perdu', color: 'bg-red-500/15 text-red-400 border-red-500/20' },
+  supprime: { label: 'Supprimé', color: 'bg-white/5 text-white/25 border-white/10' },
 }
 
 function lbl(key, val) { return LABELS[key]?.[val] ?? val ?? '—' }
@@ -160,9 +161,10 @@ export default function AdminDashboard() {
     navigate('/admin/login')
   }
 
-  const filtered = filter === 'tous' ? leads : leads.filter(l => l.status === filter)
+  const visibleLeads = leads.filter(l => l.status !== 'supprime')
+  const filtered = filter === 'tous' ? visibleLeads : visibleLeads.filter(l => l.status === filter)
 
-  const counts = leads.reduce((acc, l) => {
+  const counts = visibleLeads.reduce((acc, l) => {
     acc[l.status] = (acc[l.status] ?? 0) + 1
     return acc
   }, {})
@@ -186,7 +188,7 @@ export default function AdminDashboard() {
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {[
-            { key: 'tous', label: 'Total', count: leads.length, color: 'text-white' },
+            { key: 'tous', label: 'Total', count: visibleLeads.length, color: 'text-white' },
             { key: 'nouveau', label: 'Nouveaux', count: counts.nouveau ?? 0, color: 'text-blue-400' },
             { key: 'en_discussion', label: 'En discussion', count: counts.en_discussion ?? 0, color: 'text-yellow-400' },
             { key: 'signe', label: 'Signés', count: counts.signe ?? 0, color: 'text-green-400' },
