@@ -281,28 +281,39 @@ function LeadCard({ lead, onUpdate }) {
 export default function AdminDashboard() {
   const [leads, setLeads] = useState([])
   const [loading, setLoading] = useState(true)
+  const [refreshing, setRefreshing] = useState(false)
+  const [lastRefresh, setLastRefresh] = useState(null)
   const [filter, setFilter] = useState('tous')
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('date_desc')
   const navigate = useNavigate()
   const token = localStorage.getItem('admin_token')
 
-  const fetchLeads = useCallback(async () => {
+  const fetchLeads = useCallback(async (silent = false) => {
     if (!token) { navigate('/admin/login'); return }
+    if (!silent) setLoading(true)
+    else setRefreshing(true)
     try {
       const res = await fetch('/api/admin/leads', {
         headers: { Authorization: `Bearer ${token}` },
       })
       if (res.status === 401) { navigate('/admin/login'); return }
       setLeads(await res.json())
+      setLastRefresh(new Date())
     } catch {
       // silently fail
     } finally {
       setLoading(false)
+      setRefreshing(false)
     }
   }, [token, navigate])
 
   useEffect(() => { fetchLeads() }, [fetchLeads])
+
+  useEffect(() => {
+    const interval = setInterval(() => fetchLeads(true), 2 * 60 * 1000)
+    return () => clearInterval(interval)
+  }, [fetchLeads])
 
   function handleUpdate(id, fields) {
     setLeads(prev => prev.map(l => l.id === id ? { ...l, ...fields } : l))
@@ -369,6 +380,27 @@ export default function AdminDashboard() {
               CA signé : {caSign.toLocaleString('fr-FR')} €
             </span>
           )}
+          <div className="flex items-center gap-2">
+            {lastRefresh && (
+              <span className="text-white/20 text-xs hidden sm:block">
+                {lastRefresh.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+              </span>
+            )}
+            <button
+              onClick={() => fetchLeads(true)}
+              disabled={refreshing}
+              title="Rafraîchir"
+              className="w-7 h-7 rounded-lg border border-white/10 hover:border-white/20 flex items-center justify-center transition-colors disabled:opacity-40"
+            >
+              <svg
+                width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                className={`text-white/40 ${refreshing ? 'animate-spin' : ''}`}
+              >
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/>
+              </svg>
+            </button>
+          </div>
           <button onClick={logout} className="text-white/30 hover:text-white/60 text-xs transition-colors">Déconnexion</button>
         </div>
       </div>
