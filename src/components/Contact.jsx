@@ -145,7 +145,7 @@ const inputClass =
 export default function Contact({ preselect }) {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState({})
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', website: '' })
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -376,6 +376,17 @@ export default function Contact({ preselect }) {
                       </div>
 
                       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                        {/* Honeypot anti-bot : invisible pour les humains, ignoré par le lecteur d'écran */}
+                        <input
+                          type="text"
+                          name="website"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          aria-hidden="true"
+                          value={form.website}
+                          onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
+                          style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                        />
                         <input
                           ref={firstInputRef}
                           type="text"

@@ -1,3 +1,4 @@
+import crypto from 'node:crypto'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
@@ -5,9 +6,18 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 )
 
+// Comparaison à temps constant du token Bearer.
+function safeEqual(a, b) {
+  const ba = Buffer.from(String(a))
+  const bb = Buffer.from(String(b))
+  if (ba.length !== bb.length) return false
+  return crypto.timingSafeEqual(ba, bb)
+}
+
 function checkAuth(req) {
   const auth = req.headers.authorization ?? ''
-  return auth.replace('Bearer ', '') === process.env.ADMIN_SECRET
+  const token = auth.replace('Bearer ', '')
+  return !!process.env.ADMIN_SECRET && safeEqual(token, process.env.ADMIN_SECRET)
 }
 
 export default async function handler(req, res) {
@@ -19,7 +29,10 @@ export default async function handler(req, res) {
       .select('*')
       .order('created_at', { ascending: false })
 
-    if (error) return res.status(500).json({ error: error.message })
+    if (error) {
+      console.error('[leads] select :', error.message)
+      return res.status(500).json({ error: 'Erreur serveur.' })
+    }
     return res.status(200).json(data)
   }
 
@@ -38,7 +51,23 @@ export default async function handler(req, res) {
     }
 
     const { error } = await supabase.from('leads').update(patch).eq('id', id)
-    if (error) return res.status(500).json({ error: error.message })
+    if (error) {
+      console.error('[leads] update :', error.message)
+      return res.status(500).json({ error: 'Erreur serveur.' })
+    }
+    return res.status(200).json({ ok: true })
+  }
+
+  // Suppression définitive (RGPD art. 17) : efface réellement la ligne en base.
+  if (req.method === 'DELETE') {
+    const { id } = req.body ?? {}
+    if (!id) return res.status(400).json({ error: 'id requis.' })
+
+    const { error } = await supabase.from('leads').delete().eq('id', id)
+    if (error) {
+      console.error('[leads] delete :', error.message)
+      return res.status(500).json({ error: 'Erreur serveur.' })
+    }
     return res.status(200).json({ ok: true })
   }
 
