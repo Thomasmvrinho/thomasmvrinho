@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 
-export default function CookieBanner() {
+export default function CookieBanner({ onConsent }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -12,11 +12,13 @@ export default function CookieBanner() {
 
   const accept = () => {
     localStorage.setItem('cookie_consent', 'accepted')
+    onConsent?.('accepted')
     setVisible(false)
   }
 
   const refuse = () => {
     localStorage.setItem('cookie_consent', 'refused')
+    onConsent?.('refused')
     setVisible(false)
   }
 

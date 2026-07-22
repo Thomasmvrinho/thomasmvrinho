@@ -66,11 +66,13 @@ function HomePage() {
 }
 
 export default function App() {
+  const [consent, setConsent] = useState(() => localStorage.getItem('cookie_consent'))
+
   return (
     <MotionConfig reducedMotion="user">
     <BrowserRouter>
       <Preloader />
-      <CookieBanner />
+      <CookieBanner onConsent={setConsent} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
@@ -79,7 +81,8 @@ export default function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Analytics />
+      {/* Analytics chargé uniquement après consentement explicite (RGPD/CNIL) */}
+      {consent === 'accepted' && <Analytics />}
     </BrowserRouter>
     </MotionConfig>
   )

@@ -53,13 +53,14 @@ function relanceAlert(lead) {
   return null
 }
 
-function LeadCard({ lead, onUpdate }) {
+function LeadCard({ lead, onUpdate, onDelete }) {
   const [open, setOpen] = useState(false)
   const [updating, setUpdating] = useState(false)
   const [notes, setNotes] = useState(lead.notes ?? '')
   const [montant, setMontant] = useState(lead.montant ?? '')
   const [relanceAt, setRelanceAt] = useState(lead.relance_at ?? '')
   const [copied, setCopied] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false)
   const notesTimer = useRef(null)
   const token = localStorage.getItem('admin_token')
 
@@ -89,6 +90,20 @@ function LeadCard({ lead, onUpdate }) {
     setNotes(val)
     clearTimeout(notesTimer.current)
     notesTimer.current = setTimeout(() => patch({ notes: val }), 800)
+  }
+
+  async function hardDelete() {
+    setUpdating(true)
+    try {
+      await fetch('/api/admin/leads', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ id: lead.id }),
+      })
+      onDelete(lead.id)
+    } finally {
+      setUpdating(false)
+    }
   }
 
   function handleMontantBlur() {
@@ -272,6 +287,32 @@ function LeadCard({ lead, onUpdate }) {
               ))}
             </div>
           </div>
+
+          {/* Suppression définitive (RGPD) */}
+          <div className="pt-3 border-t border-white/[0.06]">
+            {confirmDelete ? (
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="text-red-400/80 text-xs">Effacer définitivement ce lead et toutes ses données ?</span>
+                <button
+                  onClick={hardDelete}
+                  disabled={updating}
+                  className="text-xs font-semibold text-red-400 border border-red-500/30 rounded-full px-3 py-1 hover:bg-red-500/10 transition-colors disabled:opacity-40"
+                >
+                  {updating ? 'Suppression…' : 'Confirmer'}
+                </button>
+                <button onClick={() => setConfirmDelete(false)} className="text-xs text-white/40 hover:text-white/70 transition-colors">
+                  Annuler
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => setConfirmDelete(true)}
+                className="text-xs text-white/25 hover:text-red-400 transition-colors"
+              >
+                🗑 Supprimer définitivement (RGPD)
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
@@ -317,6 +358,10 @@ export default function AdminDashboard() {
 
   function handleUpdate(id, fields) {
     setLeads(prev => prev.map(l => l.id === id ? { ...l, ...fields } : l))
+  }
+
+  function handleDelete(id) {
+    setLeads(prev => prev.filter(l => l.id !== id))
   }
 
   function logout() {
@@ -470,7 +515,7 @@ export default function AdminDashboard() {
         ) : (
           <div className="space-y-3">
             {sorted.map(lead => (
-              <LeadCard key={lead.id} lead={lead} onUpdate={handleUpdate} />
+              <LeadCard key={lead.id} lead={lead} onUpdate={handleUpdate} onDelete={handleDelete} />
             ))}
           </div>
         )}
