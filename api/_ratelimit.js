@@ -1,8 +1,8 @@
 // Rate-limiter partagé (helper interne — le préfixe _ empêche Vercel d'en faire une route).
-// Backend : Upstash Redis via son API REST (aucune dépendance npm, compatible serverless).
+// Backend : Upstash Redis via son API REST path-style (aucune dépendance npm, compatible serverless).
 // Configuration : définir UPSTASH_REDIS_REST_URL et UPSTASH_REDIS_REST_TOKEN dans les env vars.
-// Tant que ces variables ne sont pas définies, le limiteur laisse passer (fail-open) et log un avertissement,
-// pour ne jamais casser le site — mais la protection n'est active qu'une fois Upstash configuré.
+// Tant que ces variables ne sont pas définies (ou en cas d'erreur), le limiteur laisse passer
+// (fail-open) et log la raison, pour ne jamais casser le site.
 
 export function clientIp(req) {
   const xff = req.headers['x-forwarded-for']
@@ -13,27 +13,33 @@ export function clientIp(req) {
 // Renvoie { ok: true } si la requête est autorisée, { ok: false } si le quota est dépassé.
 // Fenêtre fixe : `limit` requêtes par `windowSec` secondes pour une même clé.
 export async function rateLimit({ key, limit, windowSec }) {
-  const url = process.env.UPSTASH_REDIS_REST_URL
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN
-  if (!url || !token) {
-    console.warn('[ratelimit] Upstash non configuré — rate-limiting désactivé (fail-open).')
+  const rawUrl = process.env.UPSTASH_REDIS_REST_URL
+  const rawToken = process.env.UPSTASH_REDIS_REST_TOKEN
+  if (!rawUrl || !rawToken) {
+    console.warn('[ratelimit] Upstash non configuré (variables absentes) — fail-open.')
     return { ok: true, skipped: true }
   }
+  // Nettoie d'éventuels guillemets / espaces / slash finaux collés lors du copier-coller.
+  const url = rawUrl.trim().replace(/^["']|["']$/g, '').replace(/\/+$/, '')
+  const token = rawToken.trim().replace(/^["']|["']$/g, '')
+  const headers = { Authorization: `Bearer ${token}` }
+
   try {
-    const res = await fetch(`${url}/pipeline`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify([
-        ['INCR', key],
-        ['EXPIRE', key, windowSec, 'NX'],
-      ]),
-    })
-    if (!res.ok) return { ok: true, skipped: true } // fail-open si le store répond mal
-    const data = await res.json()
-    const count = Array.isArray(data) ? data[0]?.result ?? 0 : 0
+    const incRes = await fetch(`${url}/incr/${encodeURIComponent(key)}`, { headers })
+    if (!incRes.ok) {
+      const body = await incRes.text().catch(() => '')
+      console.error(`[ratelimit] Upstash a répondu HTTP ${incRes.status} : ${body.slice(0, 200)}`)
+      return { ok: true, skipped: true }
+    }
+    const count = (await incRes.json())?.result ?? 0
+    // Sur la première requête de la fenêtre, on pose l'expiration.
+    if (count === 1) {
+      await fetch(`${url}/expire/${encodeURIComponent(key)}/${windowSec}`, { headers }).catch(() => {})
+    }
+    console.log(`[ratelimit] ${key} → ${count}/${limit}`)
     return { ok: count <= limit, count, limit }
   } catch (err) {
-    console.error('[ratelimit] erreur store :', err)
-    return { ok: true, skipped: true } // fail-open sur erreur réseau
+    console.error('[ratelimit] erreur réseau/store :', err?.message || err)
+    return { ok: true, skipped: true }
   }
 }
