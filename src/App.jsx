@@ -19,6 +19,7 @@ import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
 import MentionsLegales from './pages/MentionsLegales'
 import CookiesPage from './pages/CookiesPage'
+import CGV from './pages/CGV'
 import CookieBanner from './components/CookieBanner'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
@@ -77,6 +78,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cookies" element={<CookiesPage />} />
+        <Route path="/cgv" element={<CGV />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />

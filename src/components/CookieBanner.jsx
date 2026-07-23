@@ -42,7 +42,8 @@ export default function CookieBanner({ onConsent }) {
             }}
           >
             <p className="font-inter text-white/80 text-sm leading-relaxed mb-4">
-              Ce site utilise des cookies pour améliorer votre expérience.{' '}
+              Ce site utilise une mesure d'audience anonyme pour comprendre sa fréquentation. Vous êtes libre de
+              l'accepter ou de la refuser.{' '}
               <Link
                 to="/cookies"
                 className="text-brand underline underline-offset-2 hover:text-white transition-colors"

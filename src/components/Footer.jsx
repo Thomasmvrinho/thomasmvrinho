@@ -75,6 +75,12 @@ export default function Footer() {
             >
               Politique de cookies
             </Link>
+            <Link
+              to="/cgv"
+              className="font-inter text-white/25 text-sm hover:text-white/60 transition-colors"
+            >
+              CGV
+            </Link>
           </div>
         </div>
       </div>

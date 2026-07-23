@@ -9,12 +9,12 @@ const Section = ({ title, children }) => (
   </div>
 )
 
-const CookieRow = ({ name, purpose, duration, type }) => (
+const CookieRow = ({ name, purpose, duration }) => (
   <div
     className="grid grid-cols-4 gap-4 py-3 border-b text-sm"
     style={{ borderColor: 'rgba(255,255,255,0.06)' }}
   >
-    <span className="font-mono text-purple-400">{name}</span>
+    <span className="font-mono text-purple-400 break-words">{name}</span>
     <span className="text-white/55 col-span-2">{purpose}</span>
     <span className="text-white/35">{duration}</span>
   </div>
@@ -40,7 +40,7 @@ export default function CookiesPage() {
           <h1 className="font-grotesk font-bold text-4xl mb-2">
             <span style={{ color: '#ff8e06' }}>Politique</span> de cookies
           </h1>
-          <p className="font-inter text-white/35 text-sm mb-12">Dernière mise à jour : juillet 2026</p>
+          <p className="font-inter text-white/35 text-sm mb-12">Dernière mise à jour : 23 juillet 2026</p>
 
           <div
             className="h-px mb-12"
@@ -52,19 +52,21 @@ export default function CookiesPage() {
 
           <Section title="Qu'est-ce qu'un cookie ?">
             <p>
-              Un cookie est un petit fichier texte déposé sur votre appareil lors de la visite d'un site web. Il
-              permet de mémoriser des informations sur votre navigation.
+              Un cookie — ou une technologie similaire comme le stockage local — est une petite information
+              enregistrée sur votre appareil lors de la visite d'un site web. Il permet de mémoriser certains
+              éléments relatifs à votre navigation.
             </p>
           </Section>
 
-          <Section title="Cookies utilisés sur ce site">
-            <p className="mb-4">
-              Ce site utilise uniquement des cookies <strong className="text-white/75">strictement nécessaires</strong> à
-              son fonctionnement. Aucun cookie publicitaire ou de tracking tiers n'est déposé.
+          <Section title="Notre approche">
+            <p>
+              Ce site n'utilise <strong className="text-white/75">aucun cookie publicitaire</strong> ni traceur à
+              des fins marketing. Seuls deux éléments sont utilisés, décrits ci-dessous. La mesure d'audience n'est
+              activée <strong className="text-white/75">qu'après votre consentement explicite</strong>.
             </p>
 
             <div
-              className="rounded-xl overflow-hidden"
+              className="rounded-xl overflow-hidden mt-4"
               style={{ border: '1px solid rgba(255,255,255,0.07)' }}
             >
               <div
@@ -77,32 +79,36 @@ export default function CookiesPage() {
               </div>
               <div className="px-4">
                 <CookieRow
-                  name="session"
-                  purpose="Maintien de la session utilisateur (fonctionnement du formulaire de contact)"
-                  duration="Session"
+                  name="cookie_consent"
+                  purpose="Mémorise votre choix concernant la mesure d'audience (accepté / refusé), afin de ne pas réafficher le bandeau à chaque visite. Stocké en local sur votre navigateur."
+                  duration="Jusqu'à effacement"
                 />
                 <CookieRow
-                  name="theme"
-                  purpose="Mémorisation des préférences d'affichage"
-                  duration="1 an"
+                  name="Vercel Web Analytics"
+                  purpose="Mesure d'audience anonyme (pages vues, pays, type d'appareil). Ne dépose aucun cookie et n'identifie pas les visiteurs. Chargé uniquement si vous cliquez sur « Accepter »."
+                  duration="—"
                 />
               </div>
             </div>
           </Section>
 
-          <Section title="Cookies tiers">
+          <Section title="Votre consentement">
             <p>
-              Le formulaire de contact utilise{' '}
-              <strong className="text-white/75">EmailJS</strong>, un service d'envoi d'email. Ce service peut
-              déposer ses propres cookies techniques. Nous vous invitons à consulter leur politique de
-              confidentialité pour plus d'informations.
+              À votre première visite, un bandeau vous permet d'
+              <strong className="text-white/75">accepter</strong> ou de{' '}
+              <strong className="text-white/75">refuser</strong> la mesure d'audience.
+            </p>
+            <p>
+              Si vous refusez, aucun outil d'analyse n'est chargé : seule votre préférence de consentement est
+              conservée. Vous pouvez modifier votre choix à tout moment en effaçant les données de site de votre
+              navigateur : le bandeau réapparaîtra à la visite suivante.
             </p>
           </Section>
 
-          <Section title="Vos droits">
+          <Section title="Gérer les cookies depuis votre navigateur">
             <p>
-              Vous pouvez à tout moment désactiver les cookies via les paramètres de votre navigateur. La
-              désactivation des cookies strictement nécessaires peut affecter le bon fonctionnement du site.
+              Vous pouvez configurer votre navigateur pour bloquer ou supprimer les cookies et données de site. La
+              suppression de la préférence de consentement peut entraîner le réaffichage du bandeau.
             </p>
             <p>
               Pour toute question, contactez :{' '}
