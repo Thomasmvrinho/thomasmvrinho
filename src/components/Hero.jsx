@@ -1,16 +1,22 @@
 import { motion } from 'framer-motion'
 
 const titleWords = [
-  { text: 'Je', color: null },
-  { text: 'crée', color: null },
-  { text: 'des', color: null },
-  { text: 'sites', color: '#c97efd' },
-  { text: 'qui', color: null },
-  { text: 'transforment', color: null },
-  { text: 'vos', color: null },
-  { text: 'visiteurs', color: null },
-  { text: 'en', color: '#ff8e06' },
-  { text: 'clients', color: '#c97efd' },
+  { text: 'Un', color: null },
+  { text: 'site', color: null },
+  { text: 'web', color: null },
+  { text: 'sur', color: '#c97efd' },
+  { text: 'mesure,', color: '#c97efd' },
+  { text: 'pensé', color: null },
+  { text: 'pour', color: null },
+  { text: 'vous', color: null },
+  { text: 'rendre', color: null },
+  { text: 'visible', color: '#ff8e06' },
+  { text: 'et', color: null },
+  { text: 'donner', color: null },
+  { text: 'envie', color: null },
+  { text: 'de', color: null },
+  { text: 'vous', color: null },
+  { text: 'contacter', color: '#c97efd' },
 ]
 
 const sparkles = [
@@ -64,7 +70,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
             <span className="font-syne text-xs text-brand font-semibold uppercase tracking-widest">
-              Freelance Créatif — Disponible
+              Développeur web freelance — Disponible pour votre projet
             </span>
           </motion.div>
 
@@ -76,7 +82,7 @@ export default function Hero() {
                 style={word.color ? { color: word.color } : {}}
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.25 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
               >
                 {word.text}
               </motion.span>
@@ -89,7 +95,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.15 }}
           >
-            Sites vitrines & e-commerce sur-mesure, pensés pour performer et impressionner.
+            Sites vitrines codés à la main, boutiques en ligne (Shopify, WooCommerce ou sur mesure) et fonctionnalités sur-mesure. Un seul interlocuteur, du premier échange à la mise en ligne.
           </motion.p>
 
           <motion.div
@@ -108,7 +114,7 @@ export default function Hero() {
               }}
               className="px-7 py-3.5 rounded-full font-inter font-semibold text-brand border-2 border-brand hover:bg-brand hover:text-white transition-all duration-300"
             >
-              Voir mes réalisations
+              Voir mon travail
             </a>
             <motion.a
               href="#contact"
@@ -198,10 +204,10 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.4 }}
           >
-            <span className="text-xl">⭐</span>
+            <span className="text-xl">🤝</span>
             <div>
-              <div className="font-grotesk font-bold text-white text-sm">+8 projets</div>
-              <div className="font-inter text-white/45 text-xs">réalisés avec succès</div>
+              <div className="font-grotesk font-bold text-white text-sm">1 seul</div>
+              <div className="font-inter text-white/45 text-xs">interlocuteur</div>
             </div>
           </motion.div>
 
@@ -212,10 +218,10 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.65 }}
           >
-            <span className="text-xl">💜</span>
+            <span className="text-xl">⚡</span>
             <div>
-              <div className="font-grotesk font-bold text-white text-sm">100%</div>
-              <div className="font-inter text-white/45 text-xs">satisfaction client</div>
+              <div className="font-grotesk font-bold text-white text-sm">24 h</div>
+              <div className="font-inter text-white/45 text-xs">pour vous répondre</div>
             </div>
           </motion.div>
         </motion.div>
