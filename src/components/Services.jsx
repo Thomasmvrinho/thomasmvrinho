@@ -6,7 +6,7 @@ const services = [
     emoji: '🌐',
     title: 'Site Vitrine',
     type: 'vitrine',
-    desc: "Présence en ligne professionnelle pour artisans, professions libérales et TPE.",
+    desc: "Un site clair et professionnel qui inspire confiance à vos futurs clients : soigné pour le référencement, rapide et parfait sur mobile.",
     formulas: [
       { name: 'Essentiel', detail: '1 page (landing), design sur-mesure, formulaire de contact', price: '800 – 1 200€' },
       { name: 'Standard', detail: '3 à 5 pages, design sur-mesure, SEO de base', price: '1 500 – 2 500€' },
@@ -18,7 +18,7 @@ const services = [
     emoji: '🛒',
     title: 'Site E-commerce',
     type: 'ecommerce',
-    desc: "Vente en ligne sur Shopify, WooCommerce ou solution entièrement sur-mesure.",
+    desc: "Une boutique simple à gérer, ouverte 24 h/24, avec un paiement sécurisé — sur Shopify, WooCommerce ou une solution sur mesure.",
     formulas: [
       { name: 'Essentiel', detail: 'Boutique Shopify, thème personnalisé, jusqu\'à 30 produits', price: '2 000 – 3 500€' },
       { name: 'Standard', detail: 'Catalogue large, filtres avancés, newsletter & avis clients', price: '3 500 – 6 000€' },
@@ -27,13 +27,14 @@ const services = [
     accent: '#ff8e06',
   },
   {
-    emoji: '📱',
-    title: 'Application Web & Mobile',
+    emoji: '🧩',
+    title: 'Fonctionnalités sur-mesure',
     type: 'app',
-    desc: "Logique métier avancée — comptes utilisateurs, base de données, back-office.",
+    desc: "Besoin de plus qu'un site ? J'ajoute les outils qui vous font gagner du temps : réservation en ligne, espace client, automatisations.",
     formulas: [
-      { name: 'MVP simple', detail: 'Fonctionnalités essentielles, une plateforme (web ou mobile)', price: '4 000 – 8 000€' },
-      { name: 'Complète', detail: 'Authentification, base de données, back-office intégré', price: '8 000 – 20 000€' },
+      { name: 'Essentiel', detail: 'Une fonctionnalité ajoutée à votre site existant', price: '1 000 – 2 000€' },
+      { name: 'Standard', detail: 'Espace client, réservation ou prise de rendez-vous en ligne', price: '2 500 – 5 000€' },
+      { name: 'Sur-mesure', detail: 'Plusieurs modules, automatisations et intégrations (agenda, paiement…)', price: 'Sur devis (5 000€+)' },
     ],
     accent: '#c97efd',
   },
@@ -56,7 +57,7 @@ export default function Services({ onSelect }) {
             Mes Services
           </span>
           <h2 className="font-grotesk font-bold text-3xl md:text-4xl text-ink mb-4">
-            Ce que je fais pour vous
+            Des sites web pensés pour faire grandir votre activité
           </h2>
           <div
             className="mx-auto w-20 h-1 rounded-full"
@@ -117,7 +118,7 @@ export default function Services({ onSelect }) {
 
                   {/* Description */}
                   <p
-                    className="font-inter text-sm leading-relaxed mb-6"
+                    className="font-inter text-sm leading-relaxed mb-6 md:min-h-[5.5rem]"
                     style={{
                       color: isHov ? 'rgba(255,255,255,0.55)' : 'rgba(10,10,10,0.55)',
                       transition: 'color 0.35s ease',

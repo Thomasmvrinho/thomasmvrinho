@@ -78,7 +78,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.05, boxShadow: '0 0 22px rgba(201,126,253,0.45)' }}
             whileTap={{ scale: 0.95 }}
           >
-            Demander un devis
+            Demander un devis gratuit
           </motion.a>
 
           <button
@@ -185,7 +185,7 @@ export default function Navbar() {
                 transition={{ delay: 0.05 + links.length * 0.07 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Demander un devis
+                Demander un devis gratuit
               </motion.a>
             </div>
           </motion.div>

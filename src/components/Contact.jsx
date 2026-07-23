@@ -9,7 +9,7 @@ const questions = [
     options: [
       { value: 'vitrine', label: 'Site Vitrine', emoji: '🌐' },
       { value: 'ecommerce', label: 'Site E-commerce', emoji: '🛒' },
-      { value: 'app', label: 'Application Web & Mobile', emoji: '📱' },
+      { value: 'app', label: 'Fonctionnalités sur-mesure', emoji: '🧩' },
       { value: 'autre', label: 'Autre / Je ne sais pas', emoji: '💬' },
     ],
   },
@@ -77,7 +77,7 @@ const questions = [
 ]
 
 const LABELS = {
-  type: { vitrine: 'Site Vitrine', ecommerce: 'Site E-commerce', app: 'Application Web & Mobile', autre: 'Autre' },
+  type: { vitrine: 'Site Vitrine', ecommerce: 'Site E-commerce', app: 'Fonctionnalités sur-mesure', autre: 'Autre' },
   secteur: { commerce: 'Commerce & Retail', restauration: 'Restauration & Food', 'sante-beaute': 'Santé & Beauté', tech: 'Tech & Startup', services: 'Services professionnels', 'art-mode': 'Art, Mode & Créatif' },
   situation: { creation: 'Création from scratch', refonte: 'Refonte complète', amelioration: 'Amélioration ciblée' },
   objectif: { visibilite: 'Gagner en visibilité', credibilite: 'Asseoir ma crédibilité', ventes: 'Booster mes ventes', lancement: 'Lancer mon activité' },
@@ -226,10 +226,10 @@ export default function Contact({ preselect }) {
             Contact
           </span>
           <h2 className="font-grotesk font-bold text-3xl md:text-4xl text-white mb-3">
-            Démarrons votre projet
+            Racontez-moi votre projet
           </h2>
-          <p className="font-inter text-white/45 max-w-md mx-auto text-sm">
-            Répondez à quelques questions — je reviens vers vous sous 24h.
+          <p className="font-inter text-white/45 max-w-lg mx-auto text-sm">
+            Quelques questions rapides pour cerner votre besoin, et je vous réponds personnellement sous 24 h. Premier échange et devis offerts, sans engagement.
           </p>
           <div
             className="mx-auto mt-5 w-20 h-1 rounded-full"

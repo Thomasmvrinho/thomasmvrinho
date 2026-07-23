@@ -23,11 +23,12 @@ function AnimatedCounter({ to, suffix = '', duration = 2 }) {
   return <span ref={ref}>{count}{suffix}</span>
 }
 
+// Engagements réels et défendables (pas de compteurs de clients inventés)
 const stats = [
-  { to: 8, suffix: '+', label: 'Projets réalisés' },
-  { to: 6, suffix: '+', label: 'Clients satisfaits' },
-  { to: 1, suffix: ' an', label: "D'expérience" },
-  { to: 100, suffix: '%', label: 'Satisfaction client' },
+  { to: 100, suffix: ' %', label: 'Responsive mobile' },
+  { text: 'Sur mesure', label: 'Codé à la main' },
+  { text: 'Support', label: 'Inclus après livraison' },
+  { text: '0 €', label: 'Devis & 1er échange' },
 ]
 
 export default function Stats() {
@@ -43,31 +44,34 @@ export default function Stats() {
       />
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className="text-center"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.13 }}
-            >
-              <div
-                className="font-grotesk font-bold text-5xl md:text-6xl mb-2"
-                style={{
-                  background: 'linear-gradient(135deg, #c97efd, #ff8e06)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
+          {stats.map((stat, i) => {
+            const isText = stat.to === undefined
+            return (
+              <motion.div
+                key={stat.label}
+                className="text-center"
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.55, delay: i * 0.13 }}
               >
-                <AnimatedCounter to={stat.to} suffix={stat.suffix} />
-              </div>
-              <div className="font-inter text-ink/50 font-medium text-sm uppercase tracking-wide">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+                <div
+                  className={`font-grotesk font-bold mb-2 flex items-center justify-center min-h-[3rem] md:min-h-[3.75rem] ${isText ? 'text-3xl md:text-4xl' : 'text-5xl md:text-6xl'}`}
+                  style={{
+                    background: 'linear-gradient(135deg, #c97efd, #ff8e06)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  {isText ? stat.text : <AnimatedCounter to={stat.to} suffix={stat.suffix} />}
+                </div>
+                <div className="font-inter text-ink/50 font-medium text-sm uppercase tracking-wide">
+                  {stat.label}
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

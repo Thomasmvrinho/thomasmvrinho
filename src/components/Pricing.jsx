@@ -38,17 +38,17 @@ const plans = [
     badge: 'Populaire',
   },
   {
-    name: 'Application Web',
-    desc: 'MVP — Fonctionnalités essentielles',
-    price: '4 000 – 8 000€',
+    name: 'Fonctionnalités sur-mesure',
+    desc: 'Réservation, espace client, automatisations…',
+    price: '2 500 – 5 000€',
     type: 'app',
-    formule: 'mvp',
+    formule: 'standard',
     features: [
-      'Design sur-mesure',
-      'Responsive mobile',
-      'Fonctionnalités essentielles',
-      'Une plateforme (web ou mobile)',
-      'Livraison rapide',
+      'Réservation / prise de RDV en ligne',
+      'Espace client sécurisé',
+      'Petit back-office simple à gérer',
+      'Automatisations & intégrations',
+      'Codé sur-mesure',
     ],
     cta: 'Démarrer ce projet',
     highlight: false,
@@ -70,8 +70,11 @@ export default function Pricing({ onSelect }) {
             Tarifs
           </span>
           <h2 className="font-grotesk font-bold text-3xl md:text-4xl text-ink mb-4">
-            Des offres claires, sans surprise
+            Des tarifs clairs, sans surprise
           </h2>
+          <p className="font-inter text-ink/55 max-w-2xl mx-auto text-sm md:text-base mb-6 leading-relaxed">
+            Les prix affichés sont nets : pas de TVA à ajouter, aucun coût caché. Un site vitrine démarre à 800 €, une boutique en ligne à 2 000 €. Et vous validez toujours la maquette avant que je développe la moindre ligne de code.
+          </p>
           <div
             className="mx-auto w-20 h-1 rounded-full"
             style={{ background: 'linear-gradient(90deg, #c97efd, #ff8e06)' }}

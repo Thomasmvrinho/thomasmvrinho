@@ -5,25 +5,25 @@ const steps = [
     num: '01',
     icon: '💬',
     title: 'Échange & Brief',
-    desc: "On discute de votre projet, vos objectifs, votre cible. Je comprends votre vision pour poser des bases solides.",
+    desc: "On prend le temps de parler de votre activité, de vos objectifs et de vos clients. Pas de jargon, pas de commercial : juste vous et moi, autour de votre besoin réel.",
   },
   {
     num: '02',
     icon: '🎨',
     title: 'Maquette & Design',
-    desc: "Je crée les maquettes visuelles de votre site. Vous validez chaque détail avant qu'une seule ligne de code soit écrite.",
+    desc: "Je conçois les maquettes de votre futur site et vous validez chaque écran avant qu'une seule ligne de code ne soit écrite. Vous voyez exactement où l'on va, rien à l'aveugle.",
   },
   {
     num: '03',
     icon: '⚡',
     title: 'Développement',
-    desc: "Je développe votre site avec les technologies les plus performantes : rapide, sécurisé, optimisé.",
+    desc: "Je code votre site à la main, avec des technologies rapides et sécurisées, et un rendu impeccable sur mobile. Une question en cours de route ? Je reste disponible et vous tiens informé de l'avancement.",
   },
   {
     num: '04',
     icon: '🚀',
     title: 'Livraison & Suivi',
-    desc: "Votre site est mis en ligne. Je reste disponible pour toute question, évolution ou maintenance.",
+    desc: "Je mets votre site en ligne et je vous explique simplement comment il fonctionne. Ensuite, je reste votre contact : une évolution, une question, un doute, vous savez toujours à qui vous adresser.",
   },
 ]
 
@@ -42,7 +42,7 @@ export default function Process() {
             Ma méthode
           </span>
           <h2 className="font-grotesk font-bold text-3xl md:text-4xl text-white mb-4">
-            Un processus simple, des résultats concrets
+            Une méthode claire, transparente à chaque étape
           </h2>
           <div
             className="mx-auto w-20 h-1 rounded-full"
