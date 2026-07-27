@@ -6,7 +6,8 @@ const projects = [
     title: 'ADMARKETING',
     tags: ['Vitrine', "Apporteur d'Affaires"],
     img: '/admarketing.webp',
-    link: 'https://admarketing-ten.vercel.app/',
+    // Le domaine du client, pas le deploiement Vercel : c'est le site en production.
+    link: 'https://ad-marketing.pro/',
     accent: '#c97efd',
   },
   {
