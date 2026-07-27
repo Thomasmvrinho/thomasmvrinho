@@ -10,10 +10,12 @@ const projects = [
     accent: '#c97efd',
   },
   {
-    title: 'En développement',
-    tags: [],
-    img: null,
-    link: null,
+    title: 'ALIZÉ',
+    tags: ['Démo', 'Simulateur interactif', 'FR / EN'],
+    img: '/alize.webp',
+    // Chemin complet vers le fichier : les assets de la demo sont en relatif, donc
+    // une URL sans slash final (/demos/alize) les resoudrait depuis /demos/.
+    link: '/demos/alize/index.html',
     accent: '#ff8e06',
   },
   {
@@ -64,7 +66,7 @@ export default function Portfolio() {
               transition={{ duration: 0.5, delay: i * 0.09 }}
               whileHover={{ y: -5, boxShadow: '0 20px 55px rgba(0,0,0,0.22)' }}
             >
-              <div className="rounded-[14px] overflow-hidden bg-white h-full">
+              <div className="group rounded-[14px] overflow-hidden bg-white h-full">
                 {/* Zone image */}
                 <div className={`relative overflow-hidden h-52 ${project.img ? 'bg-[#f5f5f7]' : 'bg-[#0a0a0a]'}`}>
                   {project.img ? (
@@ -76,19 +78,23 @@ export default function Portfolio() {
                         loading="lazy"
                       />
                       {project.link && (
-                        <div className="absolute inset-0 bg-ink/80 opacity-0 hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                          <motion.a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        // Le lien porte lui-meme le calque : au doigt (aucun :hover) toute
+                        // l'image reste cliquable, et le calque apparait aussi au clavier.
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Voir le projet ${project.title} (nouvel onglet)`}
+                          className="absolute inset-0 bg-ink/80 opacity-0 hover:opacity-100 focus-visible:opacity-100 transition-all duration-300 flex items-center justify-center"
+                        >
+                          <span
                             className="px-5 py-2.5 rounded-full font-inter font-semibold text-sm text-white flex items-center gap-2"
                             style={{ background: 'linear-gradient(135deg, #c97efd, #ff8e06)' }}
-                            whileHover={{ scale: 1.06 }}
                           >
                             <ExternalLink size={15} />
                             Voir le projet
-                          </motion.a>
-                        </div>
+                          </span>
+                        </a>
                       )}
                     </>
                   ) : (
@@ -120,6 +126,18 @@ export default function Portfolio() {
                         </span>
                       ))}
                     </div>
+                  )}
+                  {/* Sur mobile, le calque au survol n'existe pas : on donne un point d'entree visible. */}
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="md:hidden mt-4 inline-flex items-center gap-2 font-inter font-semibold text-sm text-brand"
+                    >
+                      <ExternalLink size={15} />
+                      Voir le projet
+                    </a>
                   )}
                 </div>
               </div>

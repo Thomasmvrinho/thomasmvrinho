@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alizé — Produisez l'énergie que vous achetez</title>
+<meta name="description" content="Alizé conçoit, finance et exploite vos moyens de production sur site : solaire, éolien, stockage. Chiffrage sous deux jours ouvrés à partir de votre facture d'énergie. (Site de démonstration fictif.)" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#5C7D52" />
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}.sim__chart{display:none}.sim__inputs{display:none}.sim__panel{grid-template-columns:1fr}</style></noscript>
+<meta name="author" content="Thomas Marinho" />
+<link rel="alternate" hreflang="fr" href="index.html" />
+<link rel="alternate" hreflang="en" href="en.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Alizé — Produisez l'énergie que vous achetez" />
+<meta property="og:description" content="Solaire, éolien, stockage : Alizé conçoit, finance et exploite vos moyens de production sur site." />
+<meta property="og:image" content="https://www.thomasmvrinho.com/demos/alize/img/impact.webp" />
+<meta property="og:url" content="https://www.thomasmvrinho.com/demos/alize/index.html" />
+<meta property="og:locale" content="fr_FR" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%235C7D52'/%3E%3Cpath d='M14.5 25.5A8.5 8.5 0 0 1 13 8.4C19.8 7 21.6 6.4 24 3.5c1.2 2.4 2.4 5 2.4 9.6 0 6.6-5.7 12-12 12Z' fill='%23fff'/%3E%3C/svg%3E" />
+<link rel="preload" as="font" type="font/woff2" href="fonts/inter-latin-wght-normal.woff2" crossorigin />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<!-- ===================== En-tête ===================== -->
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="Alizé — accueil">
+      <span class="brand__mark" aria-hidden="true">
+        <svg class="i" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+      </span>
+      Alizé
+    </a>
+
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="#solutions">Solutions</a>
+      <a href="#simulateur">Simulateur</a>
+      <a href="#projects">Réalisations</a>
+      <a href="#about">À propos</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav__end">
+      <div class="lang">
+        <a href="en.html" lang="en" hreflang="en">EN</a>
+        <a href="index.html" aria-current="true" lang="fr">FR</a>
+      </div>
+      <a class="btn btn--primary btn--sm" href="#contact">
+        Démarrer
+        <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <button class="nav__burger" type="button" data-burger aria-expanded="false" aria-controls="mobile-nav"
+              aria-label="Ouvrir le menu" data-label-open="Ouvrir le menu" data-label-close="Fermer le menu">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__mobile" id="mobile-nav" data-mobile-nav>
+    <div class="wrap">
+      <ul>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#simulateur">Simulateur</a></li>
+        <li><a href="#projects">Réalisations</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="btn btn--primary" href="#contact">
+        Démarrer un projet
+        <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ===================== Hero ===================== -->
+  <section class="hero" id="top">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <span class="overline reveal">
+          <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          Solaire · Éolien · Stockage
+        </span>
+
+        <h1 class="reveal" data-delay="0.08">Produisez l'énergie<br />que vous <em>achetez</em></h1>
+
+        <p class="lead hero__text reveal" data-delay="0.16">
+          Alizé conçoit, finance et exploite vos moyens de production sur site. Vous nous envoyez
+          votre dernière facture, nous vous renvoyons un chiffrage : puissance installable,
+          économie annuelle, retour sur investissement.
+        </p>
+
+        <div class="hero__cta reveal" data-delay="0.24">
+          <a class="btn btn--primary" href="#simulateur">
+            Estimer mon potentiel
+            <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#projects">Voir nos réalisations</a>
+        </div>
+
+        <div class="trusted reveal" data-delay="0.32">
+          <p class="trusted__label">Ce qui est compris dans chaque contrat</p>
+          <ul class="trusted__row">
+            <li>
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+              Production garantie 25 ans
+            </li>
+            <li>
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Maintenance incluse 10 ans
+            </li>
+            <li>
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01"/><path d="M18 12h.01"/></svg>
+              Financement sans apport
+            </li>
+            <li>
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+              Étude de faisabilité offerte
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <span class="hero__glow" aria-hidden="true"></span>
+        <video class="hero__video" data-hero-video autoplay muted loop playsinline preload="metadata"
+               poster="media/floating-island-poster.webp" aria-hidden="true">
+          <source src="media/floating-island.mp4" type="video/mp4" />
+        </video>
+        <button class="hero__videoctl" type="button" data-video-toggle
+                aria-label="Mettre l'animation de fond en pause"
+                data-label-pause="Mettre l'animation de fond en pause"
+                data-label-play="Relancer l'animation de fond">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none"/></svg>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="m7 4 12 8-12 8z" fill="currentColor" stroke="none"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Solutions ===================== -->
+  <section class="section solutions" id="solutions">
+    <span class="solutions__dots" aria-hidden="true"></span>
+    <span class="deco-circle deco-circle--a" aria-hidden="true"></span>
+    <span class="deco-circle deco-circle--b" aria-hidden="true"></span>
+    <span class="deco-circle deco-circle--c" aria-hidden="true"></span>
+
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="leaf-label reveal">
+          <span class="leaf-label__rule" aria-hidden="true"></span>
+          <span class="leaf-label__text">
+            Nos&nbsp;serv<span class="leaf-label__leaf" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>ices
+          </span>
+          <span class="leaf-label__rule" aria-hidden="true"></span>
+        </div>
+
+        <h2 class="h2 reveal" data-delay="0.06">Pionniers de la tech durable</h2>
+        <p class="lead reveal" data-delay="0.12">
+          Quatre expertises intégrées, une seule équipe. Faisabilité, ingénierie, financement et
+          exploitation&nbsp;: votre transition ne s'arrête jamais entre deux prestataires.
+        </p>
+      </div>
+
+      <div class="solutions__grid">
+        <article class="scard reveal">
+          <span class="scard__icon" aria-hidden="true">
+            <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </span>
+          <div class="scard__media">
+            <img src="img/solar.webp" width="900" height="640" alt="Vue aérienne de longues rangées de panneaux solaires installées dans un champ verdoyant" loading="lazy" decoding="async" />
+            <svg class="scard__curve" viewBox="0 0 500 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,60 L0,36 Q250,2 500,36 L500,60 Z" fill="#ffffff"/></svg>
+          </div>
+          <div class="scard__body">
+            <h3>Intégration solaire</h3>
+            <p>Toiture, au sol ou ombrières de parking&nbsp;: des centrales dimensionnées pour votre site, de l'étude de faisabilité au raccordement.</p>
+          </div>
+        </article>
+
+        <article class="scard reveal" data-delay="0.08">
+          <span class="scard__icon" aria-hidden="true">
+            <svg class="i" viewBox="0 0 24 24"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg>
+          </span>
+          <div class="scard__media">
+            <img src="img/wind.webp" width="900" height="640" alt="Éoliennes dressées sur des collines verdoyantes sous un ciel nuageux" loading="lazy" decoding="async" />
+            <svg class="scard__curve" viewBox="0 0 500 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,60 L0,36 Q250,2 500,36 L500,60 Z" fill="#ffffff"/></svg>
+          </div>
+          <div class="scard__body">
+            <h3>Énergie éolienne</h3>
+            <p>Projets terrestres et offshore, appuyés sur douze mois de modélisation du gisement de vent avant le moindre dépôt de permis.</p>
+          </div>
+        </article>
+
+        <article class="scard reveal" data-delay="0.16">
+          <span class="scard__icon" aria-hidden="true">
+            <svg class="i" viewBox="0 0 24 24"><path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><path d="M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/><path d="m11 7-3 5h4l-3 5"/><line x1="22" x2="22" y1="11" y2="13"/></svg>
+          </span>
+          <div class="scard__media">
+            <img src="img/storage.webp" width="900" height="640" alt="Rangées de cellules de batteries industrielles aux bornes rouges et bleues" loading="lazy" decoding="async" />
+            <svg class="scard__curve" viewBox="0 0 500 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,60 L0,36 Q250,2 500,36 L500,60 Z" fill="#ffffff"/></svg>
+          </div>
+          <div class="scard__body">
+            <h3>Stockage d'énergie</h3>
+            <p>Des batteries qui conservent ce que vous produisez et le restituent quand les tarifs s'envolent — amorties en moins de six ans.</p>
+          </div>
+        </article>
+
+        <article class="scard reveal" data-delay="0.24">
+          <span class="scard__icon" aria-hidden="true">
+            <svg class="i" viewBox="0 0 24 24"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+          </span>
+          <div class="scard__media">
+            <img src="img/manufacturing.webp" width="900" height="640" alt="Vue aérienne d'un bâtiment industriel dont la toiture entière est couverte de panneaux solaires" loading="lazy" decoding="async" />
+            <svg class="scard__curve" viewBox="0 0 500 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0,60 L0,36 Q250,2 500,36 L500,60 Z" fill="#ffffff"/></svg>
+          </div>
+          <div class="scard__body">
+            <h3>Éco-industrie</h3>
+            <p>Nous décarbonons vos lignes de production&nbsp;: récupération de chaleur, comptage intelligent et production sur site, sans arrêter l'outil.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Simulateur ===================== -->
+  <section class="section sim" id="simulateur">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="overline reveal">Simulateur</span>
+        <h2 class="h2 reveal" data-delay="0.06">Ce que votre toiture peut produire</h2>
+        <p class="lead reveal" data-delay="0.12">
+          Quatre réglages suffisent pour un premier ordre de grandeur. Nos ingénieurs affinent
+          ensuite sur site, à partir de vos relevés réels.
+        </p>
+      </div>
+
+      <div class="sim__panel reveal" data-delay="0.18" data-sim data-payback-suffix="ans"
+           data-summary="Pour {surface} m² de toiture et {conso} MWh consommés par an : {power} kilowatts-crête installés, {prod} MWh produits, {saving} euros d'économie nette par an, investissement remboursé en {payback} ans.">
+
+        <form class="sim__inputs" data-sim-form>
+          <h3>Votre site</h3>
+
+          <div class="sim__field">
+            <div class="sim__head">
+              <label for="sim-surface">Surface de toiture exploitable</label>
+              <span class="sim__value" data-echo="surface" data-unit="m²">1 200 m²</span>
+            </div>
+            <input type="range" id="sim-surface" data-in="surface" min="200" max="6000" step="100" value="1200" />
+            <div class="sim__scale" aria-hidden="true"><span>200 m²</span><span>6 000 m²</span></div>
+          </div>
+
+          <div class="sim__field">
+            <div class="sim__head">
+              <label for="sim-conso">Consommation annuelle</label>
+              <span class="sim__value" data-echo="conso" data-unit="MWh">480 MWh</span>
+            </div>
+            <input type="range" id="sim-conso" data-in="conso" min="50" max="3000" step="10" value="480" />
+            <div class="sim__scale" aria-hidden="true"><span>50 MWh</span><span>3 000 MWh</span></div>
+          </div>
+
+          <div class="sim__field">
+            <div class="sim__head">
+              <label for="sim-type">Type d'activité</label>
+            </div>
+            <select id="sim-type" data-in="self">
+              <option value="0.80" selected>Industrie en 3×8</option>
+              <option value="0.62">Entrepôt logistique</option>
+              <option value="0.55">Bureaux et tertiaire</option>
+              <option value="0.45">Exploitation agricole</option>
+            </select>
+          </div>
+
+          <fieldset class="sim__seg sim__field">
+            <legend>Zone d'ensoleillement</legend>
+            <div class="sim__segrow">
+              <input type="radio" name="zone" id="zone-n" data-in="zone" value="1050" />
+              <label for="zone-n">Nord</label>
+              <input type="radio" name="zone" id="zone-c" data-in="zone" value="1200" checked />
+              <label for="zone-c">Centre</label>
+              <input type="radio" name="zone" id="zone-s" data-in="zone" value="1400" />
+              <label for="zone-s">Sud</label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="sim__out">
+          <dl class="sim__kpis">
+            <div class="sim__kpi">
+              <dt>Puissance</dt>
+              <dd><span data-kpi="power">204</span><span class="u">kWc</span></dd>
+            </div>
+            <div class="sim__kpi">
+              <dt>Production</dt>
+              <dd><span data-kpi="prod">245</span><span class="u">MWh/an</span></dd>
+            </div>
+            <div class="sim__kpi sim__kpi--hero">
+              <dt>Économie nette</dt>
+              <dd><span data-kpi="saving">38 600</span><span class="u">€/an</span></dd>
+            </div>
+            <div class="sim__kpi">
+              <dt>Rentabilisé en</dt>
+              <dd><span data-kpi="payback">5,1</span><span class="u">ans</span></dd>
+            </div>
+          </dl>
+
+          <div class="sim__chart">
+            <div class="sim__charthead">
+              <h4>Économies cumulées sur 25 ans</h4>
+              <div class="sim__legend" aria-hidden="true">
+                <span><i></i> Économies cumulées</span>
+                <span><i class="is-dashed"></i> Investissement</span>
+              </div>
+            </div>
+            <svg data-sim-chart viewBox="0 0 720 260" role="img" aria-label="Graphique des économies cumulées"></svg>
+          </div>
+
+          <p class="sim__note">
+            Couverture de vos besoins : <strong data-kpi="cover">41 %</strong> ·
+            CO₂ évité : <strong data-kpi="co2">15 t</strong> par an ·
+            Investissement estimé : <strong data-kpi="capex">209 000 €</strong>.
+            <br />
+            Hypothèses retenues : 0,17 kWc par m², électricité achetée 0,19 €/kWh, surplus revendu
+            0,078 €/kWh, exploitation 12 €/kWc/an, inflation de l'énergie 3 %/an, perte de rendement
+            des modules 0,4 %/an. Estimation indicative, sans valeur contractuelle.
+          </p>
+
+          <p class="sr-only" aria-live="polite" data-sim-live></p>
+
+          <div class="sim__cta">
+            <a class="btn btn--primary" href="#contact">
+              Faire vérifier ces chiffres par un ingénieur
+              <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Réalisations ===================== -->
+  <section class="section projects" id="projects">
+    <div class="wrap">
+      <div class="projects__head">
+        <div class="reveal">
+          <span class="overline">Études de cas</span>
+          <h2 class="h2">Réalisations phares</h2>
+        </div>
+        <a class="link-arrow reveal" data-delay="0.08" href="projet-nordsee.html">
+          Lire l’étude de cas Nordsee
+          <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="projects__grid">
+        <a class="pcard reveal" href="projet-nordsee.html">
+          <img src="img/project-wind.webp" width="900" height="1125" alt="Éoliennes offshore émergeant d'une mer calme sous un ciel dégagé" loading="lazy" decoding="async" />
+          <span class="pcard__badge">Étude de cas</span>
+          <span class="pcard__veil" aria-hidden="true"></span>
+          <div class="pcard__body">
+            <span class="pcard__cat">Éolien offshore</span>
+            <h3>Nordsee Array 04</h3>
+            <p class="pcard__meta">
+              380&nbsp;MW · Allemagne · 2024
+              <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </p>
+          </div>
+        </a>
+
+        <a class="pcard reveal" data-delay="0.08" href="#contact">
+          <img src="img/project-grid.webp" width="900" height="1125" alt="Deux pylônes électriques se découpant sur les gratte-ciels d'une ville au crépuscule" loading="lazy" decoding="async" />
+          <span class="pcard__veil" aria-hidden="true"></span>
+          <div class="pcard__body">
+            <span class="pcard__cat">Infrastructure réseau</span>
+            <h3>Modernisation du réseau métropolitain</h3>
+            <p class="pcard__meta">
+              1,4&nbsp;M de foyers · Portugal · 2025
+              <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </p>
+          </div>
+        </a>
+
+        <a class="pcard reveal" data-delay="0.16" href="#contact">
+          <img src="img/project-agri.webp" width="900" height="1125" alt="Racks de culture verticale où poussent des salades sous un éclairage LED" loading="lazy" decoding="async" />
+          <span class="pcard__veil" aria-hidden="true"></span>
+          <div class="pcard__body">
+            <span class="pcard__cat">Agri-tech</span>
+            <h3>Ferme verticale rénovée</h3>
+            <p class="pcard__meta">
+              −72&nbsp;% d'eau · Pays-Bas · 2025
+              <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== À propos ===================== -->
+  <section class="section about" id="about">
+    <div class="wrap about__grid">
+      <div class="about__media reveal">
+        <img src="img/about.webp" width="1200" height="900" alt="Lumière du soleil filtrant entre les troncs d'une forêt dense" loading="lazy" decoding="async" />
+        <div class="about__badge">
+          <strong>2015</strong>
+          <span>Au service de la transition énergétique</span>
+        </div>
+      </div>
+
+      <div class="reveal" data-delay="0.1">
+        <span class="overline">À propos</span>
+        <h2 class="h2">Dix ans à rendre l'énergie propre parfaitement banale</h2>
+        <span class="about__rule" aria-hidden="true"></span>
+        <p class="lead">
+          Alizé a été fondée par quatre ingénieurs réseau lassés de voir de bons projets climat
+          mourir dans un tableur. Nous avons pris tout ce que personne n'aime — modélisation,
+          autorisations, financement, exploitation — pour en faire un processus unique et responsable.
+        </p>
+
+        <ul class="checks">
+          <li>
+            <span class="tick" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div>
+              <strong>Une seule équipe, de bout en bout</strong>
+              <p>Les ingénieurs qui modélisent votre site sont ceux qui l'exploitent ensuite.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div>
+              <strong>Mesuré, pas promis</strong>
+              <p>Chaque installation est livrée avec un comptage en temps réel et un tableau de bord public.</p>
+            </div>
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div>
+              <strong>Financement inclus</strong>
+              <p>Contrats d'achat d'électricité à partir de 8&nbsp;ans&nbsp;: l'investissement ne bloque jamais la décision.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">
+            Parler à un ingénieur
+            <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Impact ===================== -->
+  <section class="impact" id="impact">
+    <img class="impact__bg" src="img/impact.webp" width="1800" height="900" alt="" role="presentation" loading="lazy" decoding="async" />
+    <div class="wrap">
+      <div class="impact__intro reveal">
+        <span class="overline">Notre impact</span>
+        <h2 class="h2">Des chiffres que nous acceptons de faire auditer</h2>
+        <p>Vérifiés chaque année par un certificateur indépendant. La méthodologie complète est publiée avec les résultats.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat reveal">
+          <span class="stat__ico" aria-hidden="true"><svg class="i i--lg" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
+          <p class="stat__num"><span data-count="1.2" data-decimals="1">1,2</span>&nbsp;M</p>
+          <p class="stat__label">Tonnes de CO₂e évitées depuis 2015</p>
+        </div>
+        <div class="stat reveal" data-delay="0.08">
+          <span class="stat__ico" aria-hidden="true"><svg class="i i--lg" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+          <p class="stat__num"><span data-count="640">640</span>&nbsp;MW</p>
+          <p class="stat__label">De capacité propre conçue et mise en service</p>
+        </div>
+        <div class="stat reveal" data-delay="0.16">
+          <span class="stat__ico" aria-hidden="true"><svg class="i i--lg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span>
+          <p class="stat__num"><span data-count="27">27</span></p>
+          <p class="stat__label">Pays où un site Alizé est en exploitation</p>
+        </div>
+        <div class="stat reveal" data-delay="0.24">
+          <span class="stat__ico" aria-hidden="true"><svg class="i i--lg" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+          <p class="stat__num"><span data-count="98">98</span>&nbsp;%</p>
+          <p class="stat__label">Des clients renouvellent après le premier contrat</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== Contact ===================== -->
+  <section class="section contact" id="contact">
+    <div class="wrap contact__grid">
+      <div class="reveal">
+        <span class="overline">Contact</span>
+        <h2 class="h2">Dites-nous ce que vous voulez alimenter</h2>
+        <p class="lead">
+          Envoyez-nous un site, une surface de toiture ou simplement votre facture d'énergie de
+          l'an dernier. Vous recevez une première lecture technique sous deux jours ouvrés — sans
+          argumentaire commercial, sans engagement.
+        </p>
+
+        <ul class="contact__list">
+          <li>
+            <span class="ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <dl>
+              <dt>E-mail</dt>
+              <dd>bonjour@alize.example</dd>
+            </dl>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <dl>
+              <dt>Téléphone</dt>
+              <dd>+31 20 244 18 90</dd>
+            </dl>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <dl>
+              <dt>Bureaux</dt>
+              <dd>Keizersgracht 62, 1015 CS Amsterdam</dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+
+      <form class="form reveal" data-delay="0.1" data-demo-form novalidate>
+        <div class="form__row">
+          <label class="field">
+            <span>Nom complet</span>
+            <input type="text" name="name" autocomplete="name" placeholder="Camille Berger" required />
+          </label>
+          <label class="field">
+            <span>E-mail</span>
+            <input type="email" name="email" autocomplete="email" placeholder="camille@entreprise.fr" required />
+          </label>
+        </div>
+
+        <div class="form__row">
+          <label class="field">
+            <span>Organisation</span>
+            <input type="text" name="company" autocomplete="organization" placeholder="Entreprise ou collectivité" />
+          </label>
+          <label class="field">
+            <span>Type de projet</span>
+            <select name="type">
+              <option>Intégration solaire</option>
+              <option>Énergie éolienne</option>
+              <option>Stockage d'énergie</option>
+              <option>Éco-industrie</option>
+              <option>Je ne sais pas encore</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Votre projet</span>
+          <textarea name="message" placeholder="Site, surface, consommation annuelle, échéance…" required></textarea>
+        </label>
+
+        <button class="btn btn--primary" type="submit">
+          Envoyer la demande
+          <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <p class="form__note">Formulaire de démonstration — rien n'est envoyé ni enregistré.</p>
+
+        <p class="form__ok" data-form-success role="status">
+          <svg class="i i--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          Merci — sur un site en production, votre demande serait déjà partie.
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== Pied de page ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <a class="brand" href="#top">
+          <span class="brand__mark" aria-hidden="true">
+            <svg class="i" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          </span>
+          Alizé
+        </a>
+        <p>La tech durable au service des collectivités et de l'industrie. Nous concevons, finançons et exploitons les systèmes qui rendent la transition énergétique ordinaire.</p>
+        <div class="socials">
+          <a href="#top" aria-label="Alizé sur LinkedIn">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#top" aria-label="Alizé sur X">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#top" aria-label="Alizé sur Instagram">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h2>Solutions</h2>
+        <ul>
+          <li><a href="#solutions">Intégration solaire</a></li>
+          <li><a href="#solutions">Énergie éolienne</a></li>
+          <li><a href="#solutions">Stockage d'énergie</a></li>
+          <li><a href="#solutions">Éco-industrie</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2>Entreprise</h2>
+        <ul>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#projects">Réalisations</a></li>
+          <li><a href="#impact">Rapport d'impact</a></li>
+          <li><a href="#contact">Recrutement</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2>Légal</h2>
+        <ul>
+          <li><a href="#top">Politique de confidentialité</a></li>
+          <li><a href="#top">Conditions générales</a></li>
+          <li><a href="#top">Gestion des cookies</a></li>
+          <li><a href="en.html" hreflang="en" lang="en">English version</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span data-year>2026</span> Alizé — entreprise fictive, site de démonstration.</span>
+      <span>Photographies&nbsp;: Unsplash · Réalisé en HTML, CSS et JavaScript natifs.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="demo-credit">
+  ◆ SITE FICTIF DE DÉMONSTRATION — conçu &amp; développé par Thomas Marinho · <a href="https://www.thomasmvrinho.com">thomasmvrinho.com</a>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
